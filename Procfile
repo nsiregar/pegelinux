@@ -1,1 +1,1 @@
-web: invoke server
+web: waitress-serve app:app
