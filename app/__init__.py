@@ -12,3 +12,4 @@ moment = Moment(app)
 
 from app.controllers import routes
 from app.controllers import scheduler
+from app.controllers import error_controller

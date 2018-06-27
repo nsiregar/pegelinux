@@ -3,14 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>PegelBlogs</title>
+  {% if title %}
+  <title>{{ title }} | PegelBlogs</title>
+  {% else %}
+    <title>PegelBlogs</title>
+  {% endif %}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/main.css') }}" />
   <script src="main.js"></script>
 </head>
 <body>
   <div class="wrapper">
-    <div class="header"><a href="{{ url_for('home.index') }}"><strong>PB | PegelBlogs</strong></a></div>
+    <div class="header">
+      <a href="{{ url_for('home.index') }}" class="brand"><strong>PB | PegelBlogs</strong></a>
+      |
+      <a href="{{ url_for('home.about') }}" class="menu">about</a>
+    </div>
     {% block content %}
     {% endblock %}
   </div>

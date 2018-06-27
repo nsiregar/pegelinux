@@ -16,6 +16,11 @@ body {
   color: black;
 }
 
+.menu {
+  color: #bbb;
+  text-decoration: none;
+}
+
 .header a {
   text-decoration: none;
   color: black;
