@@ -1,0 +1,51 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 82%;
+  background: url(/assets/img/bg-pattern.png) #fff;
+}
+
+.row {
+  border: 1px solid #f1f1f1;
+  margin: 5px;
+  padding: 4px;
+  background-color: #fff;
+}
+
+.row a {
+  text-decoration: none;
+  color: black;
+}
+
+.header a {
+  text-decoration: none;
+  color: black;
+}
+
+.owner {
+  border: 1px solid #f1f1;
+  border-radius: 5px;
+  font-size: 75%;
+  background-color: azure;
+  padding: 0 4px;
+}
+
+.source {
+  font-size: 75%;
+  color: #828282;
+}
+
+.action {
+  font-size: 73%;
+  color: #828282;
+}
+
+.item {
+  padding: 0 4px;
+}
+
+.wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 600px;
+  max-width: 900px;
+}
