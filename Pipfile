@@ -14,6 +14,7 @@ apscheduler = "*"
 flask-moment = "*"
 pylint = "*"
 gunicorn = "*"
+"psycopg2" = "*"
 
 [dev-packages]
 pylint = "*"

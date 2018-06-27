@@ -13,8 +13,8 @@ class BaseConfig:
 
 class DevelopmentConfig(BaseConfig):
     DEBUG = True
-    SECRET_KEY = 'development_key'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR.strip('\\config'), 'db/dev.db')
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'development_key'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(BASE_DIR.strip('\\config'), 'db/dev.db')
     # SQLALCHEMY_DATABASE_URI = "postgresql://postgres:postgres@127.0.0.1:5432/pegelblogs"
 
 
@@ -25,6 +25,6 @@ class TestingConfig(BaseConfig):
 
 
 class ProductionConfig(BaseConfig):
-    SECRET_KEY = '89e0uhnahtne90c9htahrcprhhnhrhnmutstsoeu[88f76rcatu90[9eo[u9'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR.strip('\\config'), 'db/prod.db')
+    SECRET_KEY = os.environ.get('SECRET_KEY') or '89e0uhnahtne90c9htahrcprhhnhrhnmutstsoeu[88f76rcatu90[9eo[u9'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(BASE_DIR.strip('\\config'), 'db/prod.db')
 
