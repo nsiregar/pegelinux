@@ -10,10 +10,10 @@ flask-wtf = "*"
 flask-migrate = "*"
 feedparser = "*"
 invoke = "*"
-waitress = "*"
 apscheduler = "*"
 flask-moment = "*"
 pylint = "*"
+gunicorn = "*"
 
 [dev-packages]
 pylint = "*"
