@@ -1,5 +1,6 @@
 from flask import render_template
-from app import app, db
+from app import app
+from app import db
 
 @app.errorhandler(404)
 def four_oh_four(error):

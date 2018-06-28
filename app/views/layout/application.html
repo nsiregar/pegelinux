@@ -15,11 +15,8 @@
 </head>
 <body>
   <div class="wrapper">
-    <div class="header">
-      <a href="{{ url_for('home.index') }}" class="brand"><strong>PB | PegelBlogs</strong></a>
-      |
-      <a href="{{ url_for('home.about') }}" class="menu">about</a>
-    </div>
+    {% include '/layout/header.html' %}
+    
     {% block content %}
     {% endblock %}
   </div>

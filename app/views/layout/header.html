@@ -1,0 +1,17 @@
+<div class="header">
+    <div class="headerleft">
+        <a href="{{ url_for('home.index') }}" class="brand"><strong>PB | PegelBlogs</strong></a>
+        |
+        <a href="{{ url_for('home.about') }}" class="menu">about</a>
+    </div>
+
+    <div class="headerright">
+        {% if current_user.is_anonymous %}
+        <a href="{{ url_for('auth.login') }}" class="menu">login</a>
+        {% else %}
+        Hi, {{ current_user.username }}
+        |
+        <a href="{{ url_for('auth.logout') }}" class="menu">logout</a>
+        {% endif %}
+    </div>
+</div>

@@ -21,9 +21,21 @@ body {
   text-decoration: none;
 }
 
+.header {
+  height: 20px;
+}
+
 .header a {
   text-decoration: none;
   color: black;
+}
+
+.headerright {
+  float: right;
+}
+
+.headerleft {
+  float: left;
 }
 
 .owner {
