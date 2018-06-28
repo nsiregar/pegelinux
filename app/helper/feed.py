@@ -45,9 +45,9 @@ def getFeed():
     for key, url in blogs.items():
         for item in parseFeed(url['rss']).entries:
             pubtime = datetime.datetime(*(item.published_parsed[0:7]))
-            try:
+            record = Post.query.filter_by(url=item.link).first()
+            if record is None:
                 post = Post(title=item.title, url=item.link, date=pubtime, owner=key, domain=url['html'])
                 db.session.add(post)
                 db.session.commit()
-            except Exception:
-                pass
+                print('News added from {}'.format(item.link))
