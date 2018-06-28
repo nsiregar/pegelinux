@@ -1,0 +1,42 @@
+{% extends '/layout/application.html' %}
+
+{% block content %}
+    <form action="" method="POST">
+        <div class="form-group">
+            {{ form.hidden_tag() }}
+            <div class="field">{{ form.username.label }}</div>
+            <div class="field">{{ form.username(size=32) }}</div>
+            {% for error in form.username.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.email.label }}</div>
+            <div class="field">{{ form.email(size=64) }}</div>
+            {% for error in form.email.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.password.label }}</div>
+            <div class="field">{{ form.password(size=32) }}</div>
+            {% for error in form.password.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.password2.label }}</div>
+            <div class="field">{{ form.password2(size=32) }}</div>
+            {% for error in form.password2.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.submit() }}</div>
+        </div>
+    </form>
+{% endblock %}

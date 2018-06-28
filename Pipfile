@@ -15,6 +15,7 @@ flask-moment = "*"
 pylint = "*"
 gunicorn = "*"
 "psycopg2" = "*"
+flask-login = "*"
 
 [dev-packages]
 pylint = "*"
