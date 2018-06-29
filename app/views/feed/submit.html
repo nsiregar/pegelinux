@@ -1,0 +1,34 @@
+{% extends '/layout/application.html' %}
+
+{% block content %}
+    <form action="" method="POST">
+        <div class="form-group">
+            {{ form.hidden_tag() }}
+            <div class="field">{{ form.owner.label }}</div>
+            <div class="field">{{ form.owner(size=32) }}</div>
+            {% for error in form.owner.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.rss.label }}</div>
+            <div class="field">{{ form.rss(size=64) }}</div>
+            {% for error in form.rss.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.html.label }}</div>
+            <div class="field">{{ form.html(size=64) }}</div>
+            {% for error in form.html.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.submit() }}</div>
+        </div>
+    </form>
+{% endblock %}

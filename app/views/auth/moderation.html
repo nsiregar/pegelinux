@@ -1,0 +1,22 @@
+{% extends '/layout/application.html' %}
+
+{% block content %}
+    <table>
+        <thead>
+        <tr>
+            <th>username</th>
+            <th>email</th>
+            <th>role</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+        <tr>
+            <td><a href="{{ url_for('auth.modify', id=user.id) }}">{{ user.username }}</a></td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
