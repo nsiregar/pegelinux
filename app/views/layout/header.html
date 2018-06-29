@@ -2,6 +2,16 @@
     <div class="headerleft">
         <a href="{{ url_for('home.index') }}" class="brand"><strong>PB | PegelBlogs</strong></a>
         |
+        <a href="{{ url_for('feed.submit') }}" class="menu">submit</a>
+        |
+        {% if current_user.role == 'admin' or current_user.role == 'momod' %}
+        <a href="{{ url_for('feed.moderation') }}" class="menu">feed moderation</a>
+        |
+        {% endif %}
+        {% if current_user.role == 'admin' %}
+        <a href="{{ url_for('auth.moderation') }}" class="menu">manage user</a>
+        |
+        {% endif %}
         <a href="{{ url_for('home.about') }}" class="menu">about</a>
     </div>
 

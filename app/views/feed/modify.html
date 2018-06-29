@@ -1,0 +1,24 @@
+{% extends '/layout/application.html' %}
+
+{% block content %}
+    <form action="" method="POST">
+        <div class="form-group">
+            {{ form.hidden_tag() }}
+            <div class="field">Owner : {{ news.owner }}</div>
+            <div class="field">RSS : {{ news.rss }}</div>
+            <div class="field">HTML : {{ news.html }}</div>
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.approved.label }}</div>
+            <div class="field">{{ form.approved() }}</div>
+            {% for error in form.approved.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.submit() }}</div>
+        </div>
+    </form>
+{% endblock %}

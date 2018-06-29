@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms import PasswordField
 from wtforms import BooleanField
+from wtforms import SelectField
 from wtforms import SubmitField
 from wtforms.validators import ValidationError
 from wtforms.validators import DataRequired
@@ -36,3 +37,8 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('email already registered')
+
+
+class UserForm(FlaskForm):
+    role = SelectField('role', choices=[('jelata', 'jelata'), ('momod', 'momod')])
+    submit = SubmitField('register')

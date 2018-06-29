@@ -56,6 +56,11 @@ body {
   color: #828282;
 }
 
+.action a {
+  text-decoration: none;
+  color: #828282;
+}
+
 .item {
   padding: 0 4px;
 }
@@ -65,4 +70,10 @@ body {
   margin-right: auto;
   min-width: 600px;
   max-width: 900px;
+}
+
+tr a {
+  text-decoration: none;
+  color: #828282;
+  border-bottom: 1px solid #828282;
 }

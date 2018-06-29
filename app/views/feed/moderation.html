@@ -1,0 +1,24 @@
+{% extends '/layout/application.html' %}
+
+{% block content %}
+    <table>
+        <thead>
+        <tr>
+            <th>owner</th>
+            <th>rss</th>
+            <th>html</th>
+            <th>approved</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for feed in submission %}
+        <tr>
+            <td><a href="{{ url_for('feed.modify', id=feed.id) }}">{{ feed.owner }}</a></td>
+            <td>{{ feed.rss }}</td>
+            <td>{{ feed.html }}</td>
+            <td>{{ feed.approved }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
