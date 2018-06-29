@@ -7,7 +7,7 @@ class Feed(db.Model):
     owner = db.Column(db.String(120), unique=True, index=True)
     rss = db.Column(db.String(128), unique=True)
     html = db.Column(db.String(128), unique=True)
-    approved = db.Column(db.Boolean, default=False)
+    approved = db.Column(db.Integer, default=0)
 
     def is_approved(self):
         return True if self.approved == 1 else False
