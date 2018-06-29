@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms import SubmitField
 from wtforms import BooleanField
+from wtforms import SelectField
 from wtforms.validators import ValidationError
 from wtforms.validators import DataRequired
 
@@ -30,5 +31,5 @@ class SubmissionForm(FlaskForm):
 
 
 class FeedModerationForm(FlaskForm):
-    approved = BooleanField('approved')
+    approved = SelectField('approved', choices=[(1, 'yes'), (0, 'no')], coerce=int)
     submit = SubmitField('register feed')
