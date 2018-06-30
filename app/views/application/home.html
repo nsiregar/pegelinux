@@ -11,7 +11,7 @@
       <div class="action">
         <span class="item">{{ moment(post.date).fromNow() }}</span>
         <span class="item"><a href="https://webcache.googleusercontent.com/search?sourceid=chrome&ie=UTF-8&q=cache%3A{{ post.url }}">cached</a></span>
-        <span class="item">comments</span>
+        <span class="item"><a href="{{ url_for('comment.comments', id=post.id) }}">comments</a></span>
       </div>
   </div>
   {% endfor %}

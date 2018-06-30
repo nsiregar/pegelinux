@@ -5,6 +5,9 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 
+from app.models.comment import Comment
+from app.models.feed import Feed
+
 USER_ROLES = ['admin', 'momod', 'jelata']
 
 class User(UserMixin, db.Model):
@@ -13,6 +16,8 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), unique=True, index=True)
     password = db.Column(db.String(255))
     role = db.Column(db.String(6), default='jelata')
+    feeds = db.relationship('Feed', backref='user', lazy='dynamic')
+    comments = db.relationship('Comment', backref='user', lazy='dynamic')
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
