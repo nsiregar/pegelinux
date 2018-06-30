@@ -5,7 +5,7 @@
     <div class="user">
         <b>{{ parent.user.username }}</b> {{ moment(parent.created_at).fromNow() }} :
     </div>
-    <div class="messages">{{ parent.messages }}</div>
+    <div class="messages">{{ parent.messages|markdown }}</div>
     <hr>
     <form action="" method="POST">
         <div class="form-group">
