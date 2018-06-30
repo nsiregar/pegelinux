@@ -43,7 +43,6 @@ def comments(id):
     form = CommentForm()
     if form.validate_on_submit():
         c = Comment(messages=form.messages.data)
-        c.parent_id = 0
         c.post_id = post.id
         c.user_id = current_user.id
         db.session.add(c)
