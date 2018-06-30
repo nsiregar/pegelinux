@@ -27,7 +27,7 @@
         <div class="comments">
             <div class="user">
                 <b>{{ comment.user.username }}</b> {{ moment(comment.created_at).fromNow() }} :
-                {% if comment.parent_id != 0 %}
+                {% if comment.parent_id %}
                 <a href="{{ url_for('comment.reply', id=comment.parent_id) }}"> >> {{ comment.parent_id }}</a>
                 {% endif %}
             </div>
