@@ -1,0 +1,45 @@
+{% extends '/layout/application.html' %}
+
+{% block content %}
+<div class="row">
+    <span class="title"><a href="{{ post.url }}">{{ post.title }}</a></span>
+    <span class="owner">{{ post.owner }}</span>
+    <span class="source">{{ post.domain }}</span>
+    <hr>
+    <form action="" method="POST">
+        <div class="form-group">
+            {{ form.hidden_tag() }}
+            <div class="field">{{ form.messages.label }}</div>
+            <div class="field">{{ form.messages(cols=60, rows=4) }}</div>
+            {% for error in form.messages.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.submit() }}</div>
+        </div>
+    </form>
+</div>
+
+{% if comments %}
+    {% for comment in comments %}
+        <div class="comments">
+            <div class="user">
+                <b>{{ comment.user.username }}</b> {{ moment(comment.created_at).fromNow() }} :
+                {% if comment.parent_id != 0 %}
+                <a href="{{ url_for('comment.reply', id=comment.parent_id) }}"> >> {{ comment.parent_id }}</a>
+                {% endif %}
+            </div>
+            {{ comment.messages|markdown }}
+            <div class="act">
+                <a href="{{ url_for('comment.reply', id=comment.id) }}">reply</a>
+                {% if current_user.role == 'admin' or current_user.role == 'momod' %}
+                |
+                <a href="">spam</a>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+{% endblock %}

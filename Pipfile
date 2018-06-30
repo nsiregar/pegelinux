@@ -16,6 +16,7 @@ pylint = "*"
 gunicorn = "*"
 "psycopg2" = "*"
 flask-login = "*"
+flask-misaka = "*"
 
 [dev-packages]
 pylint = "*"

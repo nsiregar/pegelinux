@@ -72,7 +72,28 @@ body {
   max-width: 900px;
 }
 
+.comments {
+  margin: 5px;
+  font-size: 75%;
+}
+
+.comments p {
+  margin: 0px 4px;
+}
+
+.replies {
+  margin: 5px 5px 5px 15px;
+  font-size: 75%;
+}
+
 tr a {
+  text-decoration: none;
+  color: #828282;
+  border-bottom: 1px solid #828282;
+}
+
+
+.comments a {
   text-decoration: none;
   color: #828282;
   border-bottom: 1px solid #828282;

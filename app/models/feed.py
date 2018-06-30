@@ -8,6 +8,7 @@ class Feed(db.Model):
     rss = db.Column(db.String(128), unique=True)
     html = db.Column(db.String(128), unique=True)
     approved = db.Column(db.Integer, default=0)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def is_approved(self):
         return True if self.approved == 1 else False
