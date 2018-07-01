@@ -23,8 +23,8 @@
 </div>
 
 {% if comments %}
-    {% for comment in comments %}
-        <div class="comments">
+    {% for comment in comments recursive %}
+        <div class="comments" style="padding-left: {{ 25 * comment.depth }}px">
             <div class="user">
                 <b>{{ comment.user.username }}</b> {{ moment(comment.created_at).fromNow() }} :
                 {% if comment.parent_id %}
@@ -40,6 +40,7 @@
                 {% endif %}
             </div>
         </div>
+        {{ loop(get_children_comments(comment)) }}
     {% endfor %}
 {% endif %}
 {% endblock %}

@@ -9,6 +9,7 @@ class BaseConfig:
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = 'itsasecret'
+    MAX_DEPTH = 5
 
 
 class DevelopmentConfig(BaseConfig):
