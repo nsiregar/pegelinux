@@ -3,21 +3,21 @@ version: '3.6'
 services:
   db:
     image: postgres:10.1-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=pegelinux
+      - POSTGRES_USER=postgre
+      - POSTGRES_PASSWORD=changeme
+    ports:
+      - 5432:5432
   web:
     build: .
-    command: flask db upgrade
-    command: invoke server
+    command: gunicorn -b 0.0.0.0:8000 app:app
     volumes:
       - .:/code
     ports:
       - 8000:8000
     environment:
       - SECRET_KEY=changemeinprod
-      - DATABASE_URL=postgres://db:5432/pegelinux
+      - DATABASE_URL=postgres://postgre:changeme@db:5432/pegelinux
     depends_on:
       - db
-
-volumes:
-  postgres_data:
