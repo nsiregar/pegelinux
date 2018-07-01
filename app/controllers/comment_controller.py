@@ -13,7 +13,6 @@ from app.models.comment import Comment
 from app.models.post import Post
 
 from app.forms.comment_form import CommentForm
-from app.forms.comment_form import ReplyForm
 
 comment = Blueprint('comment', __name__)
 
@@ -22,12 +21,15 @@ comment = Blueprint('comment', __name__)
 @login_required
 def reply(id):
     parent = Comment.query.get(int(id))
-    form = ReplyForm()
+    max_depth = app.config.get('MAX_DEPTH')
+    current_depth = parent.depth + 1
+    form = CommentForm()
     if form.validate_on_submit():
         r = Comment(messages=form.messages.data)
         r.parent_id = id
         r.post_id = parent.post_id
         r.user_id = current_user.id
+        r.depth = current_depth if current_depth <= max_depth else max_depth
         db.session.add(r)
         db.session.commit()
         return redirect(url_for('comment.comments', id=parent.post_id))
@@ -38,10 +40,10 @@ def reply(id):
 @comment.route('/comment/<int:id>', methods=['GET', 'POST'])
 def comments(id):
     post = Post.query.get(int(id))
-    comments = Comment.query.filter_by(post_id=id, is_spam=False).all()
+    comments = Comment.query.filter_by(post_id=id, is_spam=False, depth=0).all()
     form = CommentForm()
     if form.validate_on_submit():
-        if current_user.is_authenticated: 
+        if current_user.is_authenticated:
             c = Comment(messages=form.messages.data)
             c.post_id = post.id
             c.user_id = current_user.id
