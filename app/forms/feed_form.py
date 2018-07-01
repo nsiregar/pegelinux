@@ -8,28 +8,29 @@ from wtforms.validators import DataRequired
 
 from app.models.feed import Feed
 
+
 class SubmissionForm(FlaskForm):
-    owner = StringField('owner', validators=[DataRequired()])
-    rss = StringField('your rss feed address', validators=[DataRequired()])
-    html = StringField('your tld', validators=[DataRequired()])
-    submit = SubmitField('register feed')
+    owner = StringField("owner", validators=[DataRequired()])
+    rss = StringField("your rss feed address", validators=[DataRequired()])
+    html = StringField("your tld", validators=[DataRequired()])
+    submit = SubmitField("register feed")
 
     def validate_owner(self, owner):
         owner = Feed.query.filter_by(owner=owner.data).first()
         if owner is not None:
-            raise ValidationError('this owner name already registered')
+            raise ValidationError("this owner name already registered")
 
     def validate_rss(self, rss):
         rss = Feed.query.filter_by(rss=rss.data).first()
         if rss is not None:
-            raise ValidationError('this feed already registered')
-    
+            raise ValidationError("this feed already registered")
+
     def validate_html(self, html):
         html = Feed.query.filter_by(html=html.data).first()
         if html is not None:
-            raise ValidationError('this tld already registered')
+            raise ValidationError("this tld already registered")
 
 
 class FeedModerationForm(FlaskForm):
-    approved = SelectField('approved', choices=[(1, 'yes'), (0, 'no')], coerce=int)
-    submit = SubmitField('register feed')
+    approved = SelectField("approved", choices=[(1, "yes"), (0, "no")], coerce=int)
+    submit = SubmitField("register feed")
