@@ -18,3 +18,4 @@ Misaka(app, no_intra_emphasis=True, escape=True, autolink=True, math=True)
 from app.controllers import routes
 from app.controllers import scheduler
 from app.controllers import error_controller
+from app.helper import template_tags

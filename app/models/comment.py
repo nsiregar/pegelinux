@@ -12,6 +12,7 @@ class Comment(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     is_spam = db.Column(db.Boolean, default=False)
     replies = db.relationship('Comment', remote_side=id, backref='comment')
+    depth = db.Column(db.Integer, default=0)
 
     def __repr__(self):
         return 'Comment {}'.format(self.id)
