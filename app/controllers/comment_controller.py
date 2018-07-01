@@ -43,12 +43,14 @@ def comments(id):
     comments = Comment.query.filter_by(post_id=id, is_spam=False, depth=0).all()
     form = CommentForm()
     if form.validate_on_submit():
-        c = Comment(messages=form.messages.data)
-        c.post_id = post.id
-        c.user_id = current_user.id
-        db.session.add(c)
-        db.session.commit()
-        return redirect(url_for('comment.comments', id=post.id))
+        if current_user.is_authenticated:
+            c = Comment(messages=form.messages.data)
+            c.post_id = post.id
+            c.user_id = current_user.id
+            db.session.add(c)
+            db.session.commit()
+            return redirect(url_for('comment.comments', id=post.id))
+        return redirect(url_for('auth.login'))
     if request.method == 'GET':
         form.messages.data = ''
     return render_template('/comment/comment.html', title='comment', form=form, post=post, comments=comments)
