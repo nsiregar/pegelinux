@@ -12,7 +12,11 @@ WORKDIR /code
 RUN pip install --upgrade pip
 RUN pip install pipenv
 COPY ./Pipfile /code/Pipfile
-RUN pipenv install --deploy --system --skip-lock --dev
+RUN apk update && \
+ apk add postgresql-libs bash && \
+ apk add --virtual .build-deps gcc musl-dev postgresql-dev libffi-dev && \
+ pipenv install --deploy --system --skip-lock --dev && \
+ apk --purge del .build-deps
 
 # Copy project
 COPY . /code/
