@@ -1,5 +1,5 @@
 # Pull base image
-FROM python:3.6-slim
+FROM python:3.6-alpine
 
 # Set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1
