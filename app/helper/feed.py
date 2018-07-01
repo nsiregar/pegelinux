@@ -2,13 +2,13 @@ import feedparser
 import datetime
 from app import db
 from app.models.post import Post
-from app.models.feed import Feed
+from app.models.feed import Feed, APPROVED
 
 def parseFeed(url):
     return feedparser.parse(url)
 
 def getFeed():
-    urls = Feed.query.filter_by(approved=1).all()
+    urls = Feed.query.filter_by(approved=APPROVED).all()
     for url in urls:
         feed = parseFeed(url.rss)
         for item in feed.entries:
