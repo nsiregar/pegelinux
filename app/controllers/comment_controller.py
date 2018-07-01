@@ -14,14 +14,14 @@ from app.models.post import Post
 
 from app.forms.comment_form import CommentForm
 
-comment = Blueprint('comment', __name__)
+comment = Blueprint("comment", __name__)
 
 
-@comment.route('/reply/<int:id>', methods=['GET', 'POST'])
+@comment.route("/reply/<int:id>", methods=["GET", "POST"])
 @login_required
 def reply(id):
     parent = Comment.query.get(int(id))
-    max_depth = app.config.get('MAX_DEPTH')
+    max_depth = app.config.get("MAX_DEPTH")
     current_depth = parent.depth + 1
     form = CommentForm()
     if form.validate_on_submit():
@@ -32,12 +32,15 @@ def reply(id):
         r.depth = current_depth if current_depth <= max_depth else max_depth
         db.session.add(r)
         db.session.commit()
-        return redirect(url_for('comment.comments', id=parent.post_id))
-    if request.method == 'GET':
-        form.messages.data = ''
-    return render_template('/comment/replies.html', title='reply', form=form, parent=parent)
+        return redirect(url_for("comment.comments", id=parent.post_id))
+    if request.method == "GET":
+        form.messages.data = ""
+    return render_template(
+        "/comment/replies.html", title="reply", form=form, parent=parent
+    )
 
-@comment.route('/comment/<int:id>', methods=['GET', 'POST'])
+
+@comment.route("/comment/<int:id>", methods=["GET", "POST"])
 def comments(id):
     post = Post.query.get(int(id))
     comments = Comment.query.filter_by(post_id=id, is_spam=False, depth=0).all()
@@ -49,9 +52,14 @@ def comments(id):
             c.user_id = current_user.id
             db.session.add(c)
             db.session.commit()
-            return redirect(url_for('comment.comments', id=post.id))
-        return redirect(url_for('auth.login'))
-    if request.method == 'GET':
-        form.messages.data = ''
-    return render_template('/comment/comment.html', title='comment', form=form, post=post, comments=comments)
-        
+            return redirect(url_for("comment.comments", id=post.id))
+        return redirect(url_for("auth.login"))
+    if request.method == "GET":
+        form.messages.data = ""
+    return render_template(
+        "/comment/comment.html",
+        title="comment",
+        form=form,
+        post=post,
+        comments=comments,
+    )

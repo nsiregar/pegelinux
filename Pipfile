@@ -14,9 +14,10 @@ apscheduler = "*"
 flask-moment = "*"
 pylint = "*"
 gunicorn = "*"
-"psycopg2" = "*"
+psycopg2 = "*"
 flask-login = "*"
 flask-misaka = "*"
+black = "*"
 
 [dev-packages]
 pylint = "*"

@@ -6,6 +6,7 @@ from wtforms.validators import Length
 
 
 class CommentForm(FlaskForm):
-    messages = TextAreaField('comment', validators=[DataRequired(), Length(min=10, max=140)])
-    submit = SubmitField('reply')
-    
+    messages = TextAreaField(
+        "comment", validators=[DataRequired(), Length(min=10, max=140)]
+    )
+    submit = SubmitField("reply")
