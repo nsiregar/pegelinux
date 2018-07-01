@@ -15,6 +15,7 @@ services:
       - 8000:8000
     environment:
       - SECRET_KEY=changemeinprod
+      - DATABASE_URL=postgres://db:5432/pegelinux
     depends_on:
       - db
 
