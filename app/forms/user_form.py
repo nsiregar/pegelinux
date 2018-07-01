@@ -53,3 +53,16 @@ class RegistrationForm(FlaskForm):
 class UserForm(FlaskForm):
     role = SelectField("role", choices=[("jelata", "jelata"), ("momod", "momod")])
     submit = SubmitField("register")
+
+
+class ResetPasswordRequestForm(FlaskForm):
+    email = StringField("email", validators=[DataRequired(), Email()])
+    submit = SubmitField("request reset")
+
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField("password", validators=[DataRequired()])
+    password2 = PasswordField(
+        "repeat", validators=[DataRequired(), EqualTo("password")]
+    )
+    submit = SubmitField("register")

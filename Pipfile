@@ -18,6 +18,8 @@ psycopg2 = "*"
 flask-login = "*"
 flask-misaka = "*"
 black = "*"
+pyjwt = "*"
+requests = "*"
 
 [dev-packages]
 pylint = "*"

@@ -8,12 +8,12 @@ from config.application import DevelopmentConfig
 
 app = Flask(__name__, static_folder="assets", template_folder="views")
 app.config.from_object(DevelopmentConfig)
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 moment = Moment(app)
 login = LoginManager(app)
 login.login_view = "auth.login"
 Misaka(app, no_intra_emphasis=True, escape=True, autolink=True, math=True)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 from app.controllers import routes
 from app.controllers import scheduler

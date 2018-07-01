@@ -17,7 +17,10 @@ from app.models.user import User
 from app.forms.user_form import LoginForm
 from app.forms.user_form import RegistrationForm
 from app.forms.user_form import UserForm
+from app.forms.user_form import ResetPasswordRequestForm
+from app.forms.user_form import ResetPasswordForm
 from app.helper.auth_helper import requires_roles
+from app.helper.mail_helper import send_password_reset_mail
 
 auth = Blueprint("auth", __name__)
 
@@ -82,3 +85,35 @@ def modify(id):
     if request.method == "GET":
         form.role.data = user.role
     return render_template("/auth/modify.html", title="modify", form=form, user=user)
+
+
+@auth.route("/user/reset", methods=["GET", "POST"])
+def request_reset():
+    if current_user.is_authenticated:
+        return redirect(url_for("home.index"))
+    form = ResetPasswordRequestForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            send_password_reset_mail(user)
+        return redirect(url_for("auth.login"))
+    return render_template(
+        "/auth/request_reset.html", title="request reset password", form=form
+    )
+
+
+@auth.route("/user/reset/<token>", methods=["GET", "POST"])
+def reset_password(token):
+    if current_user.is_authenticated:
+        return redirect(url_for("home.index"))
+    user = User.verify_token_password_reset(token)
+    if not user:
+        return redirect(url_for("home.index"))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user.set_password(form.password.data)
+        db.session.commit()
+        return redirect(url_for("auth.login"))
+    return render_template(
+        "/auth/reset_password.html", title="reset password", form=form
+    )
