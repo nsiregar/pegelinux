@@ -13,6 +13,7 @@ from app.models.comment import Comment
 from app.models.post import Post
 
 from app.forms.comment_form import CommentForm
+from app.helper.auth_helper import requires_roles
 
 comment = Blueprint("comment", __name__)
 
@@ -63,3 +64,12 @@ def comments(id):
         post=post,
         comments=comments,
     )
+
+
+@comment.route("/comment/<int:post_id>/<int:id>", methods=["GET"])
+@requires_roles("admin", "momod")
+def mark_spam(post_id, id):
+    comments = Comment.query.get(int(id))
+    comments.is_spam = True
+    db.session.commit()
+    return redirect(url_for("comment.comments", id=post_id))
