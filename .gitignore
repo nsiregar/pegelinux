@@ -3,3 +3,4 @@ venv
 __pycache__
 .idea
 node_modules
+*.db
