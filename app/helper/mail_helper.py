@@ -6,7 +6,12 @@ from flask import render_template
 def send_mail(sender, recipient, subject, messages):
     url = app.config.get("MAILGUN_URL")
     auth = ("api", app.config.get("MAILGUN_API_KEY"))
-    data = {"from": sender, "to": recipient, "subject": subject, "text": messages}
+    data = {
+        "from": sender,
+        "to": recipient,
+        "subject": subject,
+        "text": messages
+        }
 
     response = requests.post(url, auth=auth, data=data)
     return response.raise_for_status()

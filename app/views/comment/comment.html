@@ -27,16 +27,17 @@
         <div class="comments" style="padding-left: {{ 25 * comment.depth }}px">
             <div class="user">
                 <b>{{ comment.user.username }}</b> {{ moment(comment.created_at).fromNow() }} :
-                {% if comment.parent_id %}
-                <a href="{{ url_for('comment.reply', id=comment.parent_id) }}"> >> {{ comment.parent_id }}</a>
-                {% endif %}
             </div>
+            {% if comment.is_spam == True %}
+            <i>spam removed</i>
+            {% else %}
             {{ comment.messages|markdown }}
+            {% endif %}
             <div class="act">
                 <a href="{{ url_for('comment.reply', id=comment.id) }}">reply</a>
-                {% if current_user.role == 'admin' or current_user.role == 'momod' %}
+                {% if (current_user.role == 'admin' or current_user.role == 'momod') and comment.is_spam == False %}
                 |
-                <a href="">spam</a>
+                <a href="{{ url_for('comment.mark_spam', post_id=post.id, id=comment.id) }}">spam</a>
                 {% endif %}
             </div>
         </div>
