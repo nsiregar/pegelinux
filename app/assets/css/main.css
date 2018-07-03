@@ -1,6 +1,6 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 82%;
+  font-size: 0.87rem;
   background: url(/assets/img/bg-pattern.png) #fff;
 }
 
@@ -41,18 +41,18 @@ body {
 .owner {
   border: 1px solid #f1f1;
   border-radius: 5px;
-  font-size: 75%;
+  font-size: 0.75rem;
   background-color: azure;
   padding: 0 4px;
 }
 
 .source {
-  font-size: 75%;
+  font-size: 0.75rem;
   color: #828282;
 }
 
 .action {
-  font-size: 73%;
+  font-size: 0.75rem;
   color: #828282;
 }
 
@@ -74,16 +74,11 @@ body {
 
 .comments {
   margin: 5px;
-  font-size: 75%;
+  font-size: 0.75rem;
 }
 
 .comments p {
   margin: 0px 4px;
-}
-
-.replies {
-  margin: 5px 5px 5px 15px;
-  font-size: 75%;
 }
 
 tr a {
