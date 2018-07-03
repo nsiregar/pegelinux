@@ -15,7 +15,7 @@ home = Blueprint("home", __name__)
 def index():
     page = request.args.get("page", 1, type=int)
     posts = (
-        Post.query.filter(POST.created_at <= datetime.utcnow())
+        Post.query.filter(Post.created_at <= datetime.utcnow())
         .order_by(Post.date.desc())
         .paginate(page, 20, False)
     )
