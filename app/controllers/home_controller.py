@@ -14,7 +14,11 @@ home = Blueprint("home", __name__)
 @home.route("/index", methods=["GET"])
 def index():
     page = request.args.get("page", 1, type=int)
-    posts = Post.query.filter(POST.created_at <= datetime.utcnow()).order_by(Post.date.desc()).paginate(page, 20, False)
+    posts = (
+        Post.query.filter(POST.created_at <= datetime.utcnow())
+        .order_by(Post.date.desc())
+        .paginate(page, 20, False)
+    )
     prev_page = url_for("home.index", page=posts.prev_num) if posts.has_prev else None
     next_page = url_for("home.index", page=posts.next_num) if posts.has_next else None
     return render_template(
