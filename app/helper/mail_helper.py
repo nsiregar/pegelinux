@@ -11,12 +11,11 @@ def send_mail(sender, recipient, subject, messages):
     response = requests.post(url, auth=auth, data=data)
     return response.raise_for_status()
 
-
-def send_password_reset_mail(user):
-    token = user.get_token_password_reset()
+def send_token_mail(user, subject, template):
+    token = user.get_token()
     send_mail(
         sender=app.config.get("MAILGUN_USER"),
         recipient=user.email,
-        subject="Reset Password Account {}".format(user.email),
-        messages=render_template("/auth/reset_password.txt", user=user, token=token),
+        subject=subject,
+        messages=render_template(template, user=user, token=token),
     )

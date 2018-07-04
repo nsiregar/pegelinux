@@ -20,7 +20,7 @@ from app.forms.user_form import UserForm
 from app.forms.user_form import ResetPasswordRequestForm
 from app.forms.user_form import ResetPasswordForm
 from app.helper.auth_helper import requires_roles
-from app.helper.mail_helper import send_password_reset_mail
+from app.helper.mail_helper import send_token_mail
 
 auth = Blueprint("auth", __name__)
 
@@ -58,6 +58,8 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
+        subject = "Verify Registration pegelinux.id"
+        send_token_mail(user, subject, "/auth/verification.txt")
         return redirect(url_for("auth.login"))
     return render_template("/auth/register.html", title="register", form=form)
 
@@ -95,7 +97,8 @@ def request_reset():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
-            send_password_reset_mail(user)
+            subject = "Reset Password Account {} pegelinux.id".format(user.username)
+            send_token_mail(user, subject, "/auth/reset_password.txt")
         return redirect(url_for("auth.login"))
     return render_template(
         "/auth/request_reset.html", title="request reset password", form=form
@@ -106,7 +109,7 @@ def request_reset():
 def reset_password(token):
     if current_user.is_authenticated:
         return redirect(url_for("home.index"))
-    user = User.verify_token_password_reset(token)
+    user = User.verify_token(token)
     if not user:
         return redirect(url_for("home.index"))
     form = ResetPasswordForm()
@@ -117,3 +120,26 @@ def reset_password(token):
     return render_template(
         "/auth/reset_password.html", title="reset password", form=form
     )
+
+@auth.route("/user/verify/<token>", methods=["GET"])
+def verify(token):
+    if current_user.is_authenticated and current_user.is_verified:
+        return redirect(url_for("home.index"))
+    user = User.verify_token(token)
+    if not user:
+        return redirect(url_for("home.index"))
+    user.is_verified = True
+    db.session.commit()
+    return redirect(url_for("home.index"))
+
+
+@auth.route("/user/<int:id>/verify", methods=["GET"])
+@login_required
+@requires_roles("admin")
+def send_verification(id):
+    user = User.query.get(int(id))
+    if user.is_verified:
+        return redirect(url_for("auth.moderation"))
+    subject = "Reminder verify registration pegelinux.id"
+    send_token_mail(user, subject, "/auth/verification.txt")
+    return redirect(url_for("auth.moderation"))

@@ -1,0 +1,4 @@
+Hi {{ user.username }},
+Click link below to verify your account
+
+{{ url_for("auth.verify", token=token, _external=True) }}
