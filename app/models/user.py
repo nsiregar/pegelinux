@@ -19,12 +19,13 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), unique=True, index=True)
     email = db.Column(db.String(120), unique=True, index=True)
     password = db.Column(db.String(255))
+    is_verified = db.Column(db.Boolean, default=False)
     role = db.Column(db.String(6), default="jelata")
     feeds = db.relationship("Feed", backref="user", lazy="dynamic")
     comments = db.relationship("Comment", backref="user", lazy="dynamic")
 
     @staticmethod
-    def verify_token_password_reset(token):
+    def verify_token(token):
         id = jwt.decode(token, app.config.get("SECRET_KEY"), algorithms=["HS256"])[
             "reset_password"
         ]
@@ -36,7 +37,7 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def get_token_password_reset(self, expires=600):
+    def get_token(self, expires=600):
         token = jwt.encode(
             {"reset_password": self.id, "exp": time() + expires},
             app.config.get("SECRET_KEY"),

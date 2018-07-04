@@ -7,7 +7,7 @@ from flask import redirect
 from flask import url_for
 from flask import request
 
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from app.forms.feed_form import SubmissionForm
 from app.forms.feed_form import FeedModerationForm
@@ -24,9 +24,15 @@ feed = Blueprint("feed", __name__)
 def submit():
     form = SubmissionForm()
     if form.validate_on_submit():
-        feed = Feed(owner=form.owner.data, rss=form.rss.data, html=form.html.data)
-        db.session.add(feed)
-        db.session.commit()
+        if current_user.is_authenticated:
+            feed = Feed(
+                owner=form.owner.data,
+                rss=form.rss.data,
+                html=form.html.data,
+                user_id=current_user.id,
+            )
+            db.session.add(feed)
+            db.session.commit()
         return redirect(url_for("home.index"))
     return render_template("/feed/submit.html", title="submission", form=form)
 
