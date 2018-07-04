@@ -121,6 +121,7 @@ def reset_password(token):
         "/auth/reset_password.html", title="reset password", form=form
     )
 
+
 @auth.route("/user/verify/<token>", methods=["GET"])
 def verify(token):
     if current_user.is_authenticated and current_user.is_verified:

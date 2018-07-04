@@ -25,7 +25,12 @@ def submit():
     form = SubmissionForm()
     if form.validate_on_submit():
         if current_user.is_authenticated:
-            feed = Feed(owner=form.owner.data, rss=form.rss.data, html=form.html.data, user_id=current_user.id)
+            feed = Feed(
+                owner=form.owner.data,
+                rss=form.rss.data,
+                html=form.html.data,
+                user_id=current_user.id,
+            )
             db.session.add(feed)
             db.session.commit()
         return redirect(url_for("home.index"))

@@ -11,6 +11,7 @@ def send_mail(sender, recipient, subject, messages):
     response = requests.post(url, auth=auth, data=data)
     return response.raise_for_status()
 
+
 def send_token_mail(user, subject, template):
     token = user.get_token()
     send_mail(
