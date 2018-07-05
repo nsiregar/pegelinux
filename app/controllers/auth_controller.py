@@ -1,7 +1,7 @@
 from app import app
 from app import db
 
-from flask import Blueprint
+from flask import Blueprint, flash
 from flask import render_template
 from flask import redirect
 from flask import url_for
@@ -111,6 +111,7 @@ def reset_password(token):
         return redirect(url_for("home.index"))
     user = User.verify_token(token)
     if not user:
+        flash("Token expired. Please retry resetting your password.")
         return redirect(url_for("home.index"))
     form = ResetPasswordForm()
     if form.validate_on_submit():
@@ -128,6 +129,7 @@ def verify(token):
         return redirect(url_for("home.index"))
     user = User.verify_token(token)
     if not user:
+        flash("Token expired. Please ask admin to send you another verify email")
         return redirect(url_for("home.index"))
     user.is_verified = True
     db.session.commit()

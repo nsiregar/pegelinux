@@ -26,10 +26,13 @@ class User(UserMixin, db.Model):
 
     @staticmethod
     def verify_token(token):
-        id = jwt.decode(token, app.config.get("SECRET_KEY"), algorithms=["HS256"])[
-            "reset_password"
-        ]
-        return User.query.get(id)
+        try:
+            id = jwt.decode(token, app.config.get("SECRET_KEY"), algorithms=["HS256"])[
+                "reset_password"
+            ]
+            return User.query.get(id)
+        except:
+            return None
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
@@ -37,7 +40,7 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def get_token(self, expires=600):
+    def get_token(self, expires=3600 * 24):
         token = jwt.encode(
             {"reset_password": self.id, "exp": time() + expires},
             app.config.get("SECRET_KEY"),
