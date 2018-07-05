@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from app import app
 from app import db
 
@@ -30,6 +32,7 @@ def reply(id):
         r.parent_id = id
         r.post_id = parent.post_id
         r.user_id = current_user.id
+        r.created_at = datetime.utcnow()
         r.depth = current_depth if current_depth <= max_depth else max_depth
         db.session.add(r)
         db.session.commit()
