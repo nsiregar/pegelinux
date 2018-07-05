@@ -6,7 +6,9 @@ You need pipenv for easy managing python project(prevent dependency break). Inst
 $ sudo pip install pipenv
 ```
 
-Clone pegelinux repository
+Don't forget to **fork** pegelinux repository to your github account: https://github.com/nsiregar/pegelinux
+
+After that, clone pegelinux repository from your account
 
 ```
 $ git clone https://github.com/<user>/pegelinux
@@ -91,3 +93,5 @@ $ flask run
 ```
 
 Browse http://127.0.0.1:5000/ and you are done~
+
+Do you ever feel like something need a change? We are waiting for your contributions and we <3 PR. See [CONTRIBUTING.md](CONTRIBUTING.md)
