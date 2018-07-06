@@ -94,7 +94,13 @@ tr a {
   border-bottom: 1px solid #828282;
 }
 
-.flash {
+.job .title a {
+  text-decoration: none;
+  color: #e96506;
+  border-bottom: 1px solid #e96506;
+}
+
+.flash, .error {
     background-color: #f89406;
     border-color: #e96506;
     color: #ffffff;

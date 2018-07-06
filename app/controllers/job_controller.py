@@ -20,13 +20,11 @@ from app.helper.auth_helper import requires_roles
 job = Blueprint("job", __name__)
 
 @job.route("/job", methods=["GET"])
-@login_required
 def listing():
     jobs = Job.query.filter_by(is_active=True, is_removed=False).all()
-    return render_template("/jobs/list.html", title="opening jobs", jobs=jobs)
+    return render_template("/job/list.html", title="opening jobs", jobs=jobs)
 
 @job.route("/job/<int:id>", methods=["GET"])
-@login_required
 def view(id):
     jobs = Job.query.get(int(id))
     return render_template("/job/detail.html", title="job detail", jobs=jobs)
@@ -59,3 +57,21 @@ def submit():
 def moderation():
     jobs = Job.query.all()
     return render_template("/job/moderation.html", title="jobs moderation", jobs=jobs)
+
+@job.route("/job/remove/<int:id>", methods=["GET"])
+@login_required
+@requires_roles("admin", "momod")
+def remove(id):
+    jobs = Job.query.get(int(id))
+    jobs.is_removed = True
+    db.session.commit()
+    return redirect(url_for("job.moderation"))
+
+@job.route("/job/activate/<int:id>", methods=["GET"])
+@login_required
+@requires_roles("admin", "momod")
+def activate(id):
+    jobs = Job.query.get(int(id))
+    jobs.is_active = True
+    db.session.commit()
+    return redirect(url_for("job.moderation"))

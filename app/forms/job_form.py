@@ -28,11 +28,12 @@ class JobSubmissionForm(FlaskForm):
     contact = TextAreaField("contact")
     employment = SelectField("employment", choices=EMPLOYMENT_TYPE)
     on_site = SelectField("on site", choices=ONSITE_TYPE)
+    submit = SubmitField("submit")
 
     def validate_description(self, description):
-        if len(description.strip()) <= 30:
+        if len(description.data.strip()) <= 30:
             raise ValidationError("please add more description")
 
     def validate_skills(self, skills):
-        if len(skills.strip()) <= 30:
+        if len(skills.data.strip()) <= 30:
             raise ValidationError("please provide detailed requirement")
