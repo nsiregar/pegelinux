@@ -1,0 +1,14 @@
+{% extends "/layout/application.html" %}
+
+{% block content %}
+    {% for job in jobs %}
+    <div class="job">
+        <span><a href="{{ url_for('job.view', id=job.id }}"></a>{{ job.title }}</a></span>
+        <span>{{ job.company }}</span>
+        <span>Date Submit - {{ job.created_at }}</span>
+        <div class="action">
+            <a href=""></a>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}
