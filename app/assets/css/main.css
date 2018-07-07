@@ -75,6 +75,8 @@ body {
 .comments {
   margin: 5px;
   font-size: 0.75rem;
+  padding: 0 4px;
+  border-left: 3px solid #e7e7e8;
 }
 
 .comments p {
