@@ -37,6 +37,7 @@ def submit():
         jobs = Job(
             title=form.title.data,
             company=form.company.data,
+            location=form.location.data,
             description=form.description.data,
             skills=form.skills.data,
             website=form.website.data,

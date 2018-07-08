@@ -22,6 +22,7 @@ ONSITE_TYPE = [
 class JobSubmissionForm(FlaskForm):
     title = StringField("job title", validators=[DataRequired()])
     company = StringField("company", validators=[DataRequired()])
+    location = StringField("location", validators=[DataRequired()])
     description = TextAreaField("description")
     skills = TextAreaField("required skills")
     website = StringField("website")

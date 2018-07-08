@@ -90,10 +90,15 @@ tr a {
 }
 
 
-.comments a {
+.comments a, .job a {
   text-decoration: none;
   color: #828282;
   border-bottom: 1px solid #828282;
+}
+
+.job {
+  margin: 5px;
+  padding: 4px;
 }
 
 .job .title a {
