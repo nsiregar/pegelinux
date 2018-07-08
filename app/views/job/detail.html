@@ -1,0 +1,34 @@
+{% extends "/layout/application.html" %}
+
+{% block content %}
+    {% if jobs.is_removed == False and jobs.is_active == True %}
+    <div class="job">
+        <div>{{ jobs.title }} at {{ jobs.company }}, {{ jobs.location }}</div>
+        <div>
+            <span class="owner">{{ jobs.employment }}</span>
+            <span class="owner">onsite: {{ jobs.on_site }}</span>
+            <span style="font-size: 0.75rem; color: #828282;">{{ moment(jobs.created_at).fromNow() }}</span>
+        </div>
+        <div>
+            <span><strong>Description:</strong></span>
+            <span>{{ jobs.description|markdown }}</span>
+        </div>
+        <div>
+            <span><strong>Required Skills:</strong></span>
+            <span>{{ jobs.skills|markdown }}</span>
+        </div>
+        <div>
+            <span><strong>Contact:</strong></span>
+            <span>{{ jobs.contact|markdown }}</span>
+        </div>
+        <div>
+            <span><strong>Website:</strong></span>
+            <span>{{ jobs.website|markdown }}</span>
+        </div>
+    </div>
+    {% else %}
+    <div class="job">
+        Sorry, this job already removed or not active anymore .. 
+    </div>
+    {% endif %}
+{% endblock %}
