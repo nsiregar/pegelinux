@@ -9,14 +9,10 @@ from wtforms.validators import ValidationError
 EMPLOYMENT_TYPE = [
     ("fulltime", "Fulltime"),
     ("contract", "Contract"),
-    ("freelance", "Freelance")
+    ("freelance", "Freelance"),
 ]
 
-ONSITE_TYPE = [
-    ("full", "Full On-Site"),
-    ("some", "Partially"),
-    ("no", "Remote Jobs")
-]
+ONSITE_TYPE = [("full", "Full On-Site"), ("some", "Partially"), ("no", "Remote Jobs")]
 
 
 class JobSubmissionForm(FlaskForm):

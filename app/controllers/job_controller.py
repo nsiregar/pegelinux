@@ -19,15 +19,18 @@ from app.helper.auth_helper import requires_roles
 
 job = Blueprint("job", __name__)
 
+
 @job.route("/job", methods=["GET"])
 def listing():
     jobs = Job.query.filter_by(is_active=True, is_removed=False).all()
     return render_template("/job/list.html", title="opening jobs", jobs=jobs)
 
+
 @job.route("/job/<int:id>", methods=["GET"])
 def view(id):
     jobs = Job.query.get(int(id))
     return render_template("/job/detail.html", title="job detail", jobs=jobs)
+
 
 @job.route("/job/submit", methods=["GET", "POST"])
 @login_required
@@ -43,7 +46,7 @@ def submit():
             website=form.website.data,
             contact=form.contact.data,
             employment=form.employment.data,
-            on_site=form.on_site.data
+            on_site=form.on_site.data,
         )
         jobs.user_id = current_user.id
         jobs.created_at = datetime.utcnow()
@@ -52,12 +55,14 @@ def submit():
         return redirect(url_for("job.listing"))
     return render_template("/job/submit.html", title="job submission", form=form)
 
+
 @job.route("/job/moderation", methods=["GET"])
 @login_required
 @requires_roles("admin", "momod")
 def moderation():
     jobs = Job.query.all()
     return render_template("/job/moderation.html", title="jobs moderation", jobs=jobs)
+
 
 @job.route("/job/remove/<int:id>", methods=["GET"])
 @login_required
@@ -67,6 +72,7 @@ def remove(id):
     jobs.is_removed = True
     db.session.commit()
     return redirect(url_for("job.moderation"))
+
 
 @job.route("/job/activate/<int:id>", methods=["GET"])
 @login_required
