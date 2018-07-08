@@ -14,6 +14,8 @@ class BaseConfig:
     MAILGUN_USER = os.environ.get("MAILGUN_USER")
     MAILGUN_DOMAIN = os.environ.get("MAILGUN_DOMAIN")
     MAILGUN_URL = "https://api.mailgun.net/v3/{}/messages".format(MAILGUN_DOMAIN)
+    SQLALCHEMY_POOL_SIZE = 15
+    SQLALCHEMY_MAX_OVERFLOW = 5
 
 
 class DevelopmentConfig(BaseConfig):
