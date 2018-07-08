@@ -6,6 +6,7 @@ class Job(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120))
     company = db.Column(db.String(120))
+    location = db.Column(db.String(255))
     description = db.Column(db.Text)
     skills = db.Column(db.Text)
     website = db.Column(db.String(120))
