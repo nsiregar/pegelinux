@@ -80,7 +80,11 @@ export default class FoldableComment {
 
   show() {
     this.containerDom.style.display = 'block';
-    this.unfold(); //we call unfold instead of just showAllReplies because it will be weird if a comment is folded but its replies is shown
+
+    // we call unfold instead of just showAllReplies
+    // because it will be weird if a comment is folded
+    // but its replies is shown
+    this.unfold();
   }
 
   hideAllReplies() {
@@ -100,5 +104,5 @@ export default class FoldableComment {
       let signal = new Event(eventName);
       replyDom.dispatchEvent(signal);
     });
-  };
+  }
 }
