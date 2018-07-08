@@ -32,7 +32,7 @@ Submitting patches
 
 - Try to follow `PEP8`_, but you may ignore the line length limit if following
   it would make the code uglier.
-- Or run `inv clean` to run black as pep8 formatter
+- Or run ``inv clean`` to run black as pep8 formatter
 
 First time setup
 ~~~~~~~~~~~~~~~~
@@ -74,9 +74,7 @@ Start coding
   ``basic-test-suite``)
 - Using your favorite editor, make your changes, `committing as you go`_.
 - Try to follow `PEP8`_, but you may ignore the line length limit if following
-  it would make the code uglier.
-- Include tests that cover any code changes you make. Make sure the test fails
-  without your patch. `Run the tests. <contributing-testsuite_>`_.
+  it would make the code uglier. Or just run ``inv clean``.
 - Push your commits to GitHub and `create a pull request`_.
 - Celebrate 🎉
 
@@ -84,4 +82,3 @@ Start coding
 .. _PEP8: https://pep8.org/
 .. _create a pull request: https://help.github.com/articles/creating-a-pull-request/
 
-.. _contributing-testsuite:
