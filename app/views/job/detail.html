@@ -6,7 +6,7 @@
         <div>{{ jobs.title }} at {{ jobs.company }}, {{ jobs.location }}</div>
         <div>
             <span class="owner">{{ jobs.employment }}</span>
-            <span class="owner">onsite: {{ jobs.on_site }}</span>
+            <span class="owner">{{ jobs.on_site }}</span>
             <span style="font-size: 0.75rem; color: #828282;">{{ moment(jobs.created_at).fromNow() }}</span>
         </div>
         <div>

@@ -8,7 +8,7 @@
     <div class="job">
         <span class="title"><a href="{{ url_for('job.view', id=job.id) }}">{{ job.title }}</a>,<a href="{{ job.website }}">{{ job.company }}</a></span>
         <span class="owner">{{ job.employment }}</span>
-        <span class="owner">onsite: {{ job.on_site }}</span>
+        <span class="owner">{{ job.on_site }}</span>
         <span style="font-size: 0.75rem; color: #828282;">{{ moment(job.created_at).fromNow() }}</span>
         <div>
             <span>{{ job.location }}</span>
