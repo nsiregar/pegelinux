@@ -94,4 +94,40 @@ $ flask run
 
 Browse http://127.0.0.1:5000/ and you are done~
 
+
+## Using Docker
+
+By using docker, you don't need to setup anything except installing docker and docker-compose. Please open official documentation for each tools to install it for your OS.
+
+### Start server
+Run this command to automatically create and running web and database container
+
+```
+inv docker-server start
+```
+Wait after a while, there will be some error because we just created the container but haven't migrate tha database yet. **Ctrl + C** to stop
+Next we do database migration
+
+```
+docker-compose exec web flask db upgrade
+```
+After that you can start again the server
+
+```
+inv docker-server start
+```
+to start and
+```
+inv docker-server stop
+```
+to stop.
+
+
+To apply your code change, please stop the server and rebuild the container by using
+```
+inv docker-build
+```
+It will rebuild the container almost instantly, except if you add new dependencies to pipfile, it will rebuild all the dependencies once only.
+
+
 Do you ever feel like something need a change? We are waiting for your contributions and we <3 PR. See [CONTRIBUTING.md](CONTRIBUTING.md)
