@@ -47,13 +47,14 @@ def reply(id):
 @comment.route("/comment/<int:id>", methods=["GET", "POST"])
 def comments(id):
     post = Post.query.get(int(id))
-    comments = Comment.query.filter_by(post_id=id, depth=0).order_by(Comment.id).all()
+    comments = Comment.query.filter_by(post_id=id, depth=0).order_by(Comment.created_at.desc()).all()
     form = CommentForm()
     if form.validate_on_submit():
         if current_user.is_authenticated:
             c = Comment(messages=form.messages.data)
             c.post_id = post.id
             c.user_id = current_user.id
+            c.created_at = datetime.utcnow()
             db.session.add(c)
             db.session.commit()
             return redirect(url_for("comment.comments", id=post.id))
