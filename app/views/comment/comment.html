@@ -24,15 +24,17 @@
 
 {% if comments %}
     {% for comment in comments recursive %}
-        <div class="comments" style="margin-left: {{ 25 * comment.depth }}px">
+    <div class="comments" style="margin-left: {{ 25 * comment.depth }}px" data-comment-id="{{ comment.id }}" {% if comment.parent_id %}data-parent-id="{{ comment.parent_id }}"{% endif %}>
             <div class="user">
                 <b>{{ comment.user.username }}</b> {{ moment(comment.created_at).fromNow() }} :
             </div>
+            <div class="comments__content">
             {% if comment.is_spam == True %}
             <i>spam removed</i>
             {% else %}
             {{ comment.messages|markdown }}
             {% endif %}
+            </div>
             <div class="act">
                 <a href="{{ url_for('comment.reply', id=comment.id) }}">reply</a>
                 {% if (current_user.role == 'admin' or current_user.role == 'momod') and comment.is_spam == False %}

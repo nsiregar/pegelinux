@@ -6,3 +6,7 @@ node_modules
 *.db
 .vs
 db/postgre
+*.swp
+**/node_modules/*
+**/yarn-error.log
+
