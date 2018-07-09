@@ -5,3 +5,7 @@ __pycache__
 node_modules
 *.db
 .vs
+*.swp
+**/node_modules/*
+**/yarn-error.log
+
