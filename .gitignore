@@ -5,3 +5,4 @@ __pycache__
 node_modules
 *.db
 .vs
+db/postgre
