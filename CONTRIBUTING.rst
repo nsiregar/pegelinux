@@ -47,8 +47,8 @@ First time setup
 - Fork pegelinux to your GitHub account by clicking the `Fork`_ button.
 - `Clone`_ your GitHub fork locally::
 
-        git clone https://github.com/{username}/flask
-        cd flask
+        git clone https://github.com/{username}/pegelinux
+        cd pegelinux
 
 - Add the main repository as a remote to update later::
 
