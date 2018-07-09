@@ -5,7 +5,7 @@
     <div class="job">
         <span class="title"><a href="{{ url_for('job.view', id=job.id) }}">{{ job.title }}</a>,<a href="{{ job.website }}">{{ job.company }}</a></span>
         <span class="owner">{{ job.employment }}</span>
-        <span class="owner">onsite: {{ job.on_site }}</span>
+        <span class="owner">{{ job.on_site }}</span>
         {% if job.is_active %}
         <span class="owner">active</span>
         {% endif %}
