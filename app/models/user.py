@@ -10,6 +10,7 @@ from werkzeug.security import check_password_hash
 
 from app.models.comment import Comment
 from app.models.feed import Feed
+from app.models.job import Job
 
 USER_ROLES = ["admin", "momod", "jelata"]
 
@@ -23,6 +24,7 @@ class User(UserMixin, db.Model):
     role = db.Column(db.String(6), default="jelata")
     feeds = db.relationship("Feed", backref="user", lazy="dynamic")
     comments = db.relationship("Comment", backref="user", lazy="dynamic")
+    jobs = db.relationship("Job", backref="user", lazy="dynamic")
 
     @staticmethod
     def verify_token(token):

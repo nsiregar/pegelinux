@@ -4,6 +4,8 @@ __pycache__
 .idea
 node_modules
 *.db
+.vs
 *.swp
 **/node_modules/*
 **/yarn-error.log
+

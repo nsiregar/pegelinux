@@ -1,0 +1,82 @@
+{% extends "/layout/application.html" %}
+
+{% block content %}
+    <form action="" method="POST">
+        <div class="form-group">
+            {{ form.hidden_tag() }}
+            <div class="field">{{ form.title.label }}</div>
+            <div class="field">{{ form.title(size=32) }}</div>
+            {% for error in form.title.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.company.label }}</div>
+            <div class="field">{{ form.company(size=32) }}</div>
+            {% for error in form.company.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.location.label }}</div>
+            <div class="field">{{ form.location(size=32) }}</div>
+            {% for error in form.location.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.description.label }}</div>
+            <div class="field">{{ form.description(cols=100, rows=5) }}</div>
+            {% for error in form.description.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.skills.label }}</div>
+            <div class="field">{{ form.skills(cols=100, rows=5) }}</div>
+            {% for error in form.skills.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.website.label }}</div>
+            <div class="field">{{ form.website(size=32) }}</div>
+            {% for error in form.website.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.contact.label }}</div>
+            <div class="field">{{ form.contact(cols=60, rows=4) }}</div>
+            {% for error in form.contact.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.employment.label }}</div>
+            <div class="field">{{ form.employment() }}</div>
+            {% for error in form.employment.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.on_site.label }}</div>
+            <div class="field">{{ form.on_site() }}</div>
+            {% for error in form.on_site.errors %}
+            <div class="error">[{{ error }}]</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <div class="field">{{ form.submit() }}</div>
+        </div>
+    </form>
+{% endblock %}

@@ -75,6 +75,8 @@ body {
 .comments {
   margin: 5px;
   font-size: 0.75rem;
+  padding: 0 4px;
+  border-left: 3px solid #e7e7e8;
 }
 
 .comments p {
@@ -88,13 +90,24 @@ tr a {
 }
 
 
-.comments a {
+.comments a, .job a {
   text-decoration: none;
   color: #828282;
   border-bottom: 1px solid #828282;
 }
 
-.flash {
+.job {
+  margin: 5px;
+  padding: 4px;
+}
+
+.job .title a {
+  text-decoration: none;
+  color: #e96506;
+  border-bottom: 1px solid #e96506;
+}
+
+.flash, .error {
     background-color: #f89406;
     border-color: #e96506;
     color: #ffffff;

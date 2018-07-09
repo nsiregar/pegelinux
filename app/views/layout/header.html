@@ -4,8 +4,12 @@
         |
         <a href="{{ url_for('feed.submit') }}" class="menu">submit</a>
         |
+        <a href="{{ url_for('job.listing') }}" class="menu">jobs</a>
+        |
         {% if current_user.role == 'admin' or current_user.role == 'momod' %}
         <a href="{{ url_for('feed.moderation') }}" class="menu">feed moderation</a>
+        |
+        <a href="{{ url_for('job.moderation') }}" class="menu">jobs moderation</a>
         |
         {% endif %}
         {% if current_user.role == 'admin' %}

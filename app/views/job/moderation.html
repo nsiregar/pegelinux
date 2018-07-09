@@ -1,0 +1,25 @@
+{% extends "/layout/application.html" %}
+
+{% block content %}
+    {% for job in jobs %}
+    <div class="job">
+        <span class="title"><a href="{{ url_for('job.view', id=job.id) }}">{{ job.title }}</a>,<a href="{{ job.website }}">{{ job.company }}</a></span>
+        <span class="owner">{{ job.employment }}</span>
+        <span class="owner">onsite: {{ job.on_site }}</span>
+        {% if job.is_active %}
+        <span class="owner">active</span>
+        {% endif %}
+        {% if job.is_removed %}
+        <span class="owner">removed</span>
+        {% endif %}
+        <span style="font-size: 0.75rem; color: #828282;">{{ moment(job.created_at).fromNow() }}</span>
+        <div>
+            <span>{{ job.location }}</span>
+        </div>
+        <div class="action">
+            <a href="{{ url_for('job.remove', id=job.id) }}">remove</a>
+            <a href="{{ url_for('job.activate', id=job.id) }}">activate</a>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}
