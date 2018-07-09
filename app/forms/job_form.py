@@ -12,7 +12,11 @@ EMPLOYMENT_TYPE = [
     ("freelance", "Freelance"),
 ]
 
-ONSITE_TYPE = [("onsite", "Full On-Site"), ("partially", "Partially"), ("remote", "Remote Jobs")]
+ONSITE_TYPE = [
+    ("onsite", "Full On-Site"),
+    ("partially", "Partially"),
+    ("remote", "Remote Jobs"),
+]
 
 
 class JobSubmissionForm(FlaskForm):

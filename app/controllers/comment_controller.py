@@ -47,7 +47,9 @@ def reply(id):
 @comment.route("/comment/<int:id>", methods=["GET", "POST"])
 def comments(id):
     post = Post.query.get(int(id))
-    comments = Comment.query.filter_by(post_id=id, depth=0).order_by(Comment.created_at).all()
+    comments = (
+        Comment.query.filter_by(post_id=id, depth=0).order_by(Comment.created_at).all()
+    )
     form = CommentForm()
     if form.validate_on_submit():
         if current_user.is_authenticated:
