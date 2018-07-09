@@ -6,6 +6,7 @@ from app.models.user import User
 
 user_command = AppGroup("user")
 
+
 @user_command.command("create")
 @click.argument("username")
 @click.argument("email")
@@ -16,5 +17,6 @@ def create_user(username, email, password):
     db.session.add(user)
     db.session.commit()
     print("User {} created".format(username))
+
 
 app.cli.add_command(user_command)
