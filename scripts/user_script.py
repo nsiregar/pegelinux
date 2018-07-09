@@ -23,7 +23,7 @@ def create_user(username, email, password):
 @user_command.command("promote")
 @click.argument("username")
 @click.option("--role", default="momod", help="user role")
-def promote_user(username):
+def promote_user(username, role):
     user = User.query.filter_by(username=username).first()
     user.role = role
     db.session.commit()
