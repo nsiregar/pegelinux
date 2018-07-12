@@ -2,6 +2,7 @@
   "devDependencies": {
     "jasmine-core": "^2.99.1",
     "karma": "^2.0.0",
+    "karma-faker": "^1.1.0",
     "karma-jasmine": "^1.1.1",
     "karma-jasmine-dom-matchers": "^0.1.2",
     "karma-jquery": "^0.2.3",
@@ -16,6 +17,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
+    "moment-mini": "^2.22.1",
     "uglifyjs-webpack-plugin": "^1.2.7"
   },
   "scripts": {
