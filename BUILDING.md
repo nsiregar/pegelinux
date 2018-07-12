@@ -109,7 +109,7 @@ Wait after a while, there will be some error because we just created the contain
 Next we do database migration
 
 ```
-docker-compose exec web flask db upgrade
+docker-compose run web flask db upgrade
 ```
 After that you can start again the server
 
