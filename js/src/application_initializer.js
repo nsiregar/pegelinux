@@ -4,8 +4,6 @@ import moment from 'moment-mini';
 export default class ApplicationInitializer {
   static main() {
     document.addEventListener('DOMContentLoaded', () => {
-      'use strict';
-
       this.initializeFoldableComment();
       this.initializeMoment();
     });
