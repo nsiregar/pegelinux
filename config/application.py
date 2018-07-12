@@ -14,7 +14,7 @@ class BaseConfig:
     MAILGUN_USER = os.environ.get("MAILGUN_USER")
     MAILGUN_DOMAIN = os.environ.get("MAILGUN_DOMAIN")
     MAILGUN_URL = "https://api.mailgun.net/v3/{}/messages".format(MAILGUN_DOMAIN)
-    SQLALCHEMY_POOL_SIZE = 15
+    SQLALCHEMY_POOL_SIZE = 10
     SQLALCHEMY_MAX_OVERFLOW = 5
 
 
@@ -34,10 +34,5 @@ class TestingConfig(BaseConfig):
 
 
 class ProductionConfig(BaseConfig):
-    SECRET_KEY = (
-        os.environ.get("SECRET_KEY")
-        or "89e0uhnahtne90c9htahrcprhhnhrhnmutstsoeu[88f76rcatu90[9eo[u9"
-    )
-    SQLALCHEMY_DATABASE_URI = os.environ.get(
-        "DATABASE_URL"
-    ) or "sqlite:///" + os.path.join(BASE_DIR.strip("\\config"), "db/prod.db")
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
