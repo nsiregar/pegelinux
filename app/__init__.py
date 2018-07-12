@@ -19,3 +19,4 @@ from app.controllers import routes
 from app.controllers import scheduler
 from app.controllers import error_controller
 from app.helper import template_tags
+from scripts import user_script
