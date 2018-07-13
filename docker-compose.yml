@@ -20,6 +20,7 @@ services:
       - 5000:5000
     environment:
       - ENV=DEVELOPMENT
+      - APP_CONFIG=config.application.DevelopmentConfig
       - SECRET_KEY=changemeinprod
       - DATABASE_URL=postgres://postgre:changeme@db:5432/pegelinux
     depends_on:
