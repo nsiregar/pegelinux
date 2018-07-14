@@ -11,3 +11,4 @@ db/postgre
 **/yarn-error.log
 .env
 
+docker-compose.yml
