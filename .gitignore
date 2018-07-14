@@ -9,5 +9,6 @@ db/postgre
 *.swp
 **/node_modules/*
 **/yarn-error.log
+.env
 
 docker-compose.yml

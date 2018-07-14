@@ -18,6 +18,6 @@
             <div class="field">{{ form.submit() }}</div>
         </div>
     </form>
-    <p>New user? <a href="{{ url_for('auth.register') }}">Register</a></p>
+    <p>New user? <a href="{{ url_for('auth.register') }}">Register</a> or via <a href="{{ url_for('auth.github_auth') }}">Github</a></p>
     <p>Forgot Password? <a href="{{ url_for('auth.request_reset') }}">Reset</a></p>
 {% endblock %}
