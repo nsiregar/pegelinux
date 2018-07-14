@@ -58,12 +58,12 @@ def github_auth():
 @auth.route("/github/auth", methods=["GET"])
 def github_callback():
     session_code = request.args["code"]
-    access_token = get_access_token(session_code)
-    auth_data = get_auth_data(access_token)
+    access_token = get_github_token(session_code)
+    auth_data = get_github_data(access_token)
     if auth_data["login"] is None:
         flash("Authentication failed")
         return redirect(url_for("home.index"))
-    user = User.query.filter_by(username=auth_data["login"]).first()
+    user = User.query.filter_by(email=auth_data["email"]).first()
     if not user:
         user = User(username=auth_data["login"], email=auth_data["email"])
         user.is_verified = True
