@@ -29,10 +29,10 @@ class DevelopmentConfig(BaseConfig):
     # SQLALCHEMY_DATABASE_URI = "postgresql://postgres:postgres@127.0.0.1:5432/pegelblogs"
 
 
-class TestingConfig(BaseConfig):
+class TestingConfig:
     DEBUG = True
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(BASE_DIR, "db/test.db")
+    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(BASE_DIR.strip("\\config"), "db/test.db")
 
 
 class ProductionConfig(BaseConfig):
