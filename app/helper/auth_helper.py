@@ -37,3 +37,10 @@ def get_github_data(access_token):
     data = {"access_token": access_token}
     response = requests.get(url, params=data, headers={"Accept": "application/json"})
     return response.json()
+
+
+def get_github_email(access_token):
+    url = "https://api.github.com/user/emails"
+    data = { "access_token": access_token}
+    response = requests.get(url, params=data, headers={"Accept": "application/json"})
+    return response.json()[0]["email"]
