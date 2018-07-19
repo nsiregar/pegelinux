@@ -1,6 +1,5 @@
 import time
 import atexit
-import logging
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger
@@ -22,6 +21,3 @@ def init():
     )
     atexit.register(lambda: scheduler.shutdown())
 
-
-logging.basicConfig()
-logging.getLogger("apscheduler").setLevel(logging.DEBUG)

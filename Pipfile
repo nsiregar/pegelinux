@@ -20,6 +20,8 @@ flask-misaka = "*"
 black = "*"
 pyjwt = "*"
 requests = "*"
+flask-testing = "*"
+"nose2" = "*"
 
 [dev-packages]
 pylint = "*"

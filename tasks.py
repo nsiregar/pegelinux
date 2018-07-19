@@ -1,5 +1,5 @@
+import unittest
 from time import sleep
-
 from invoke import task
 
 
@@ -28,3 +28,8 @@ def docker_server(ctx, command):
 @task
 def docker_build(ctx):
     ctx.run("docker-compose build")
+
+
+@task
+def docker_test(ctx):
+    ctx.run("sudo docker-compose run web nose2 -v")
