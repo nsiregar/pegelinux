@@ -99,6 +99,13 @@ Browse http://127.0.0.1:5000/ and you are done~
 
 By using docker, you don't need to setup anything except installing docker and docker-compose. Please open official documentation for each tools to install it for your OS.
 
+### Docker compose configuration
+First copy the example file to docker-compose.yml
+
+```
+cp docker-compose.yml.example docker-compose.yml
+```
+
 ### Start server
 Run this command to automatically create and running web and database container
 
