@@ -37,9 +37,9 @@
             </div>
             <div class="act">
                 <a href="{{ url_for('comment.reply', id=comment.id) }}">reply</a>
-                {% if (current_user.role == 'admin' or current_user.role == 'momod') and comment.is_spam == False %}
+                {% if (current_user.role == 'admin' or current_user.role == 'momod') %}
                 |
-                <a href="{{ url_for('comment.mark_spam', post_id=post.id, id=comment.id) }}">spam</a>
+                <a href="{{ url_for('comment.mark_spam_unspam', post_id=post.id, id=comment.id) }}">{% if comment.is_spam == True %}not {% endif %}spam</a>
                 {% endif %}
             </div>
         </div>
