@@ -137,4 +137,4 @@ inv docker-build
 It will rebuild the container almost instantly, except if you add new dependencies to pipfile, it will rebuild all the dependencies once only.
 
 
-Do you ever feel like something need a change? We are waiting for your contributions and we <3 PR. See [CONTRIBUTING.md](CONTRIBUTING.md)
+Do you ever feel like something need a change? We are waiting for your contributions and we <3 PR. See [CONTRIBUTING.md](CONTRIBUTING.rst)
