@@ -14,8 +14,6 @@ class BaseConfig:
     MAILGUN_USER = os.environ.get("MAILGUN_USER")
     MAILGUN_DOMAIN = os.environ.get("MAILGUN_DOMAIN")
     MAILGUN_URL = "https://api.mailgun.net/v3/{}/messages".format(MAILGUN_DOMAIN)
-    SQLALCHEMY_POOL_SIZE = 10
-    SQLALCHEMY_MAX_OVERFLOW = 5
     GITHUB_CLIENT_ID = os.environ.get("GITHUB_CLIENT_ID")
     GITHUB_SECRET_ID = os.environ.get("GITHUB_SECRET_ID")
 

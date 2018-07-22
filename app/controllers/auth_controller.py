@@ -64,7 +64,11 @@ def github_callback():
     if auth_data["login"] is None:
         flash("Authentication failed")
         return redirect(url_for("home.index"))
-    email = get_github_email(access_token) if auth_data["email"] is None else auth_data["email"]
+    email = (
+        get_github_email(access_token)
+        if auth_data["email"] is None
+        else auth_data["email"]
+    )
     user = User.query.filter_by(email=email).first()
     if not user:
         user = User(username=auth_data["login"], email=email)
