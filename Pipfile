@@ -22,6 +22,7 @@ pyjwt = "*"
 requests = "*"
 flask-testing = "*"
 "nose2" = "*"
+blinker = "*"
 
 [dev-packages]
 pylint = "*"
