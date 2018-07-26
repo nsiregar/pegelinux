@@ -10,5 +10,6 @@ db/postgre
 **/node_modules/*
 **/yarn-error.log
 .env
+.DS_Store
 
 docker-compose.yml
