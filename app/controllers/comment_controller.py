@@ -74,8 +74,8 @@ def comments(id):
 
 @comment.route("/comment/<int:post_id>/<int:id>", methods=["GET"])
 @requires_roles("admin", "momod")
-def mark_spam(post_id, id):
+def mark_spam_unspam(post_id, id):
     comments = Comment.query.get(int(id))
-    comments.is_spam = True
+    comments.is_spam = not comments.is_spam
     db.session.commit()
     return redirect(url_for("comment.comments", id=post_id))
