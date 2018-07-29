@@ -13,6 +13,7 @@ class Post(db.Model):
     date = db.Column(db.DateTime)
     owner = db.Column(db.String(150))
     domain = db.Column(db.String(255))
+    votes = db.Column(db.Integer)
     comments = db.relationship("Comment", backref="post", lazy="dynamic")
 
     def __repr__(self):
