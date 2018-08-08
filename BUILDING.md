@@ -54,6 +54,7 @@ Before you can use flask, you need to specify flask app environment:
 
 ```
 export FLASK_APP=app.py
+export APP_CONFIG=config.application.DevelopmentConfig
 ```
 
 After that, migrate flask db:
