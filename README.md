@@ -10,4 +10,4 @@ See [BUILDING.md](BUILDING.md)
 
 See [CHANGELOG.md](CHANGELOG.md)
 
-__Something stuff will be added soon~__
+__Other stuff will be added soon~__
