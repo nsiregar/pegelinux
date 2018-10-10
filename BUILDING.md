@@ -137,5 +137,53 @@ inv docker-build
 ```
 It will rebuild the container almost instantly, except if you add new dependencies to pipfile, it will rebuild all the dependencies once only.
 
+### Other Method
+This will make your container reload when you change your code
+
+First copy the docker-compose.yml.dev file to docker-compose.yml
+
+```
+cp docker-compose.yml.dev docker-compose.yml
+```
+
+### Up & Build
+
+For the first time, run this command to automatically create and running web and database container
+
+```
+ docker-compose up --build -d
+```
+
+### Database migration
+
+We just created a web container and database, so that the application can run we have to migrate the database, first we go into the web container.
+
+```
+docker exec -it pegelinux_web_1 bash
+```
+Run this command to migrate database
+
+```
+bash-4.4# flask db migrate
+bash-4.4# flask db upgrade
+bash-4.4# exit
+```
+
+Done, now you can access this web from `localhost:5000`
+
+### Stop container
+
+To stop this container, run this command
+
+```
+docker-compose stop
+```
+
+If you not change anything on docker-compose.yml, just run this command to running your container
+
+```
+docker-compose up -d
+```
+
 
 Do you ever feel like something need a change? We are waiting for your contributions and we <3 PR. See [CONTRIBUTING.md](CONTRIBUTING.md)
