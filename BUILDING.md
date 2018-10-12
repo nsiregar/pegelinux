@@ -140,7 +140,7 @@ It will rebuild the container almost instantly, except if you add new dependenci
 ### Other Method
 This will make your container reload when you change your code
 
-First copy the docker-compose.yml.dev file to docker-compose.yml
+First copy the docker-compose.yml.example file to docker-compose.yml
 
 ```
 cp docker-compose.yml.dev docker-compose.yml
