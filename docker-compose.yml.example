@@ -12,8 +12,9 @@ services:
     volumes:
       - ./db/postgre:/var/lib/postgresql/data
   web:
+    restart: always
     build: .
-    command: gunicorn -b 0.0.0.0:5000 app:app
+    command: gunicorn --reload -b 0.0.0.0:5000 app:app
     volumes:
       - .:/code
     ports:
