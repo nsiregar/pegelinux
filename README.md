@@ -1,6 +1,6 @@
 ## PegeLinux Blogs 
 
-Source code for pegelinux.id based on Flask, this site is dedicated for pegelinux community members.
+Blog agregrator for pegelinux community to embrace One Day One Article
 
 ## How to Build 
 
