@@ -21,6 +21,9 @@ def init():
         replace_existing=True,
     )
     atexit.register(lambda: scheduler.shutdown())
+    
+    # run job once at startup
+    getFeed()
 
 
 logging.basicConfig()
