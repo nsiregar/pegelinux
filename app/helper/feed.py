@@ -13,7 +13,7 @@ def getFeed():
     urls = Feed.query.filter_by(approved=APPROVED).all()
     for url in urls:
         feed = parseFeed(url.rss)
-        if feed.status == 200:
+        if feed.get("status") == 200:
             for item in feed.entries:
                 pubtime = datetime.datetime(*(item.published_parsed[0:7]))
                 record = Post.query.filter_by(url=item.link).first()
@@ -29,4 +29,4 @@ def getFeed():
                     db.session.commit()
                     print("News added from {}".format(item.link))
         else:
-            print("Status code {} for {}".format(feed.status, url.rss))
+            print("Status code {} for {}".format(feed.get("status"), url.rss))
