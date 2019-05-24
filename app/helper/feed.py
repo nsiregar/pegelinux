@@ -12,6 +12,7 @@ def parseFeed(url):
 def getFeed():
     urls = Feed.query.filter_by(approved=APPROVED).all()
     for url in urls:
+        print("Trying to parse RSS from {}".format(url.rss))
         feed = parseFeed(url.rss)
         if feed.get("status") == 200:
             for item in feed.entries:
