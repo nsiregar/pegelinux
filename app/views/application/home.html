@@ -5,7 +5,7 @@
 {% if posts %}
   {% for post in posts.items %}
   <div class="row">
-      <span class="title"><a href="{{ post.url }}" target="_blank">{{ post.title }}</a></span>
+      <span class="title"><a href="{{ post.url }}" target="_blank" rel="noopener noreferrer">{{ post.title }}</a></span>
       <span class="owner">{{ post.owner }}</span>
       <span class="source">{{ post.domain }}</span>
       <div class="action">
