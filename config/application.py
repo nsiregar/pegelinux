@@ -16,6 +16,8 @@ class BaseConfig:
     MAILGUN_URL = "https://api.mailgun.net/v3/{}/messages".format(MAILGUN_DOMAIN)
     GITHUB_CLIENT_ID = os.environ.get("GITHUB_CLIENT_ID")
     GITHUB_SECRET_ID = os.environ.get("GITHUB_SECRET_ID")
+    SENTRY_DSN = os.environ.get("SENTRY_DSN")
+    SENTRY_ID = os.environ.get("SENTRY_ID")
 
 
 class DevelopmentConfig(BaseConfig):
