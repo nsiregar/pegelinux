@@ -143,7 +143,7 @@ This will make your container reload when you change your code
 First copy the docker-compose.yml.example file to docker-compose.yml
 
 ```
-cp docker-compose.yml.dev docker-compose.yml
+cp docker-compose.yml.example docker-compose.yml
 ```
 
 ### Up & Build
