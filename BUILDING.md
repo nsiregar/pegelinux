@@ -60,6 +60,10 @@ export APP_CONFIG=config.application.DevelopmentConfig
 After that, migrate flask db:
 
 ```
+$ flask db stamp head
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.runtime.migration] Running stamp_revision  -> xxxxxxxxxx
 $ flask db migrate           
 INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
 INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
