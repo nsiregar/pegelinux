@@ -18,7 +18,7 @@ Misaka(app, no_intra_emphasis=True, escape=True, autolink=True, math=True)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-sentry.init()
+sentry.init(app)
 
 from app.controllers import routes
 from app.controllers import scheduler

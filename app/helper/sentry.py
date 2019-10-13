@@ -1,9 +1,8 @@
 import sentry_sdk
 from sentry_sdk.integrations.flask import FlaskIntegration
-from app import app
 
 
-def init():
+def init(app):
     sentry_dsn = app.config.get("SENTRY_DSN")
     sentry_id = app.config.get("SENTRY_ID")
     if (sentry_dsn and sentry_id) is None:
