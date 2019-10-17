@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "jasmine-core": "^2.99.1",
-    "karma": "^2.0.0",
+    "karma": "^4.4.0",
     "karma-faker": "^1.1.0",
     "karma-jasmine": "^1.1.1",
     "karma-jasmine-dom-matchers": "^0.1.2",
