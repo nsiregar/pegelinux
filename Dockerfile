@@ -1,3 +1,19 @@
+### Compile js
+from node:alpine as jsbuilder
+
+WORKDIR /js
+RUN mkdir -p /app/assets/js
+
+# Copy js code and dependencies
+COPY ./js /js
+
+# install dependecies
+RUN yarn install
+
+# build js
+RUN yarn build-production
+
+### actual image
 # Pull base image
 FROM python:3.8-alpine
 
@@ -20,3 +36,6 @@ RUN apk update && \
 
 # Copy project
 COPY . /code/
+
+# copy application js
+COPY --from=jsbuilder /app/assets/js/application.js /code/app/assets/js/application.js
