@@ -1,0 +1,5 @@
+db/
+js/node_modules/
+Dockerfile
+*.md
+.idea/
