@@ -19,7 +19,7 @@ flask-login = "*"
 flask-misaka = "*"
 pyjwt = "*"
 requests = "*"
-sentry-sdk = {extras = ["flask"],version = "==0.13.0"}
+sentry-sdk = {extras = ["flask"],version = "==0.13.1"}
 
 [dev-packages]
 pylint = "*"
