@@ -10,9 +10,6 @@ COPY ./js /js
 # install dependecies
 RUN yarn install
 
-# run test
-RUN yarn test
-
 # build js
 RUN yarn build-production
 
