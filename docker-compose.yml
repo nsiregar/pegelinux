@@ -14,7 +14,7 @@ services:
       - ./db/postgre:/var/lib/postgresql/data
 
   web:
-    build: .
+    image: docker.pkg.github.com/nsiregar/pegelinux/pegelinux:latest
     command: gunicorn -b 0.0.0.0:5000 --workers 4 --timeout=60 --thread 4 app:app
     volumes:
       - code:/pegelinux
