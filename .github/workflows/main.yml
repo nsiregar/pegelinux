@@ -20,5 +20,4 @@ jobs:
       run: |
         cd ./js
         yarn install
-        yarn build
         yarn test
