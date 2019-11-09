@@ -1,0 +1,24 @@
+name: Pegelinux Branch
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Test Javascript
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+
+    - name: Run javascript test
+      run: |
+        cd ./js
+        yarn install
+        yarn test
