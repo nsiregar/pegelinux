@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+  test:
+    name: Javascript Test
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node JS
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Run build and test
+      run: |
+        cd ./js
+        yarn install
+        yarn build
+        yarn test
