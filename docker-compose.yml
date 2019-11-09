@@ -17,8 +17,8 @@ services:
     command: gunicorn -b 0.0.0.0:5000 --workers 4 --timeout=60 --thread 4 app:app
     volumes:
       - .:/code
-    expose:
-      - 5000
+    ports:
+      - 5000:5000
     environment:
       - ENV=${ENV}
       - SECRET_KEY=${SECRET_KEY}
@@ -33,4 +33,3 @@ services:
       - SENTRY_ID=${SENTRY_ID}
     depends_on:
       - db
-
