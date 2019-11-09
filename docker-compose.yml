@@ -17,7 +17,7 @@ services:
     build: .
     command: gunicorn -b 0.0.0.0:5000 --workers 4 --timeout=60 --thread 4 app:app
     volumes:
-      - /pegelinux
+      - code:/pegelinux
     expose:
       - 5000
     environment:
@@ -43,8 +43,8 @@ services:
       - 443:443
     volumes:
       - ./caddy/Caddyfile:/etc/Caddyfile
-    volumes_from:
-      - web
+      - /var/log/pegelinux/pegelinux.access.log:/var/log/pegelinux/pegelinux.access.log
+      - code:/pegelinux
 
   watchtower:
     image: containrrr/watchtower
@@ -52,3 +52,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /root/.docker/config.json:/config.json
     command: --interval 30
+
+volumes:
+  code:
