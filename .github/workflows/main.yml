@@ -33,7 +33,7 @@ jobs:
     - name: Build and publish docker image
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: nsiregar/pegelinux/pegelinux
+        name: nsiregar/pegelinux/pegelinux:latest
         username: ${{ secrets.GITHUB_REGISTRY_USER }}
         password: ${{ secrets.GITHUB_REGISTRY_TOKEN }}
         registry: docker.pkg.github.com
