@@ -22,7 +22,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Set work directory
-WORKDIR /code
+WORKDIR /pegelinux
 
 # Install dependencies
 RUN pip install --upgrade pip
@@ -35,7 +35,7 @@ RUN apk update && \
  apk --purge del .build-deps
 
 # Copy project
-COPY . /code/
+COPY . /pegelinux/
 
 # copy application js
 COPY --from=jsbuilder /app/assets/js/application.js /code/app/assets/js/application.js

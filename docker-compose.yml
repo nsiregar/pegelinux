@@ -3,6 +3,7 @@ version: '3.6'
 services:
   db:
     image: postgres:10-alpine
+    restart: always
     environment:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
@@ -16,9 +17,9 @@ services:
     build: .
     command: gunicorn -b 0.0.0.0:5000 --workers 4 --timeout=60 --thread 4 app:app
     volumes:
-      - .:/code
-    ports:
-      - 5000:5000
+      - /pegelinux
+    expose:
+      - 5000
     environment:
       - ENV=${ENV}
       - SECRET_KEY=${SECRET_KEY}
@@ -33,3 +34,21 @@ services:
       - SENTRY_ID=${SENTRY_ID}
     depends_on:
       - db
+
+  caddy:
+    image: abiosoft/caddy
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./caddy/Caddyfile:/etc/Caddyfile
+    volumes_from:
+      - web
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/.docker/config.json:/config.json
+    command: --interval 30

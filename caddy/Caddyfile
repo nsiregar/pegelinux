@@ -1,0 +1,9 @@
+:80 {
+  root /pegelinux
+  proxy / web:5000 {
+    transparent
+  }
+
+  gzip
+  log /var/log/pegelinux/pegelinux.access.log
+}
