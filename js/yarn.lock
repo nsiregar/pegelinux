@@ -2557,9 +2557,9 @@ karma-jasmine@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/karma-jasmine/-/karma-jasmine-1.1.2.tgz#394f2b25ffb4a644b9ada6f22d443e2fd08886c3"
 
-karma-jquery@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/karma-jquery/-/karma-jquery-0.2.3.tgz#e67107934d0b4047c206baa520e43c78d7e8411f"
+karma-jquery@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/karma-jquery/-/karma-jquery-0.2.4.tgz#1512b608257aba3b8cf426cbc438d9759706efb6"
 
 karma-phantomjs-launcher@^1.0.4:
   version "1.0.4"
