@@ -26,12 +26,12 @@ WORKDIR /pegelinux
 
 # Install dependencies
 RUN pip install --upgrade pip
-RUN pip install pipenv
-COPY ./Pipfile /pegelinux/Pipfile
+COPY ./requirements.txt /pegelinux/requirements.txt
+
 RUN apk update && \
  apk add postgresql-libs bash && \
  apk add --virtual .build-deps gcc musl-dev postgresql-dev libffi-dev binutils libc-dev && \
- pipenv install --deploy --system --skip-lock --dev && \
+ pip install -r requirements.txt && \
  apk --purge del .build-deps
 
 # Copy project
