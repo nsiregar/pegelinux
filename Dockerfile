@@ -30,7 +30,7 @@ RUN pip install pipenv
 COPY ./Pipfile /pegelinux/Pipfile
 RUN apk update && \
  apk add postgresql-libs bash && \
- apk add --virtual .build-deps gcc musl-dev postgresql-dev libffi-dev && \
+ apk add --virtual .build-deps gcc musl-dev postgresql-dev libffi-dev binutils libc-dev && \
  pipenv install --deploy --system --skip-lock --dev && \
  apk --purge del .build-deps
 
