@@ -16,8 +16,6 @@ services:
   web:
     image: docker.pkg.github.com/nsiregar/pegelinux/pegelinux:latest
     command: gunicorn -b 0.0.0.0:5000 --workers 4 --timeout=60 --thread 4 app:app
-    volumes:
-      - code:/pegelinux
     expose:
       - 5000
     environment:
@@ -44,14 +42,10 @@ services:
     volumes:
       - ./caddy/Caddyfile:/etc/Caddyfile
       - /var/log/pegelinux/pegelinux.access.log:/var/log/pegelinux/pegelinux.access.log
-      - code:/pegelinux
 
   watchtower:
     image: containrrr/watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /root/.docker/config.json:/config.json
-    command: --interval 30 --cleanup --remove-volumes
-
-volumes:
-  code:
+    command: --interval 30 --cleanup
