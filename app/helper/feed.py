@@ -38,4 +38,4 @@ def save_post(item, pubtime, url):
     )
     db.session.add(post)
     db.session.commit()
-    print('News added from { item.link }')
+    print(f'News added from { item.link }')
