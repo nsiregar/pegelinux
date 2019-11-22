@@ -39,3 +39,4 @@ jobs:
         registry: docker.pkg.github.com
         snapshot: true
         cache: true
+        tag_names: true
