@@ -20,12 +20,11 @@ from app.forms.user_form import UserForm
 from app.forms.user_form import ResetPasswordRequestForm
 from app.forms.user_form import ResetPasswordForm
 from app.helper.auth_helper import requires_roles
-from app.helper.auth_helper import get_github_token
-from app.helper.auth_helper import get_github_data
-from app.helper.auth_helper import get_github_email
+from app.helper.auth_helper import GithubAuth
 from app.helper.mail_helper import send_token_mail
 
 auth = Blueprint("auth", __name__)
+github = GithubAuth(app)
 
 
 @auth.route("/login", methods=["GET", "POST"])
@@ -59,13 +58,13 @@ def github_auth():
 @auth.route("/github/auth", methods=["GET"])
 def github_callback():
     session_code = request.args["code"]
-    access_token = get_github_token(session_code)
-    auth_data = get_github_data(access_token)
+    access_token = github.fetch_token(session_code)
+    auth_data = github.fetch_user_data(access_token)
     if auth_data["login"] is None:
         flash("Authentication failed")
         return redirect(url_for("home.index"))
     email = (
-        get_github_email(access_token)
+        github.fetch_user_email(access_token)
         if auth_data["email"] is None
         else auth_data["email"]
     )

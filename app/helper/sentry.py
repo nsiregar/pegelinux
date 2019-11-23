@@ -8,7 +8,7 @@ class SentryHelper():
         self.app = app
         self.dsn = app.config.get("SENTRY_DSN")
         self.id = app.config.get("SENTRY_ID")
-        __integrate()
+        self.__integrate()
 
     def __integrate():
         if (self.dsn and self.id) is None:
