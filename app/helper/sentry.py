@@ -8,6 +8,7 @@ class SentryHelper():
         self.app = app
         self.dsn = app.config.get("SENTRY_DSN")
         self.id = app.config.get("SENTRY_ID")
+        self.env = app.config.get("ENV")
         self.__integrate()
 
     def __integrate(self):
@@ -16,6 +17,7 @@ class SentryHelper():
 
         sentry_url = f"https://{ self.dsn }@sentry.io/{ self.id }"
         sentry_sdk.init(
+            environment=self.env,
             dsn=sentry_url,
             integrations=[FlaskIntegration(), SqlalchemyIntegration()]
             )
