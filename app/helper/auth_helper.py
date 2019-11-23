@@ -25,7 +25,7 @@ class GithubAuth:
         self.secret = app.config.get("GITHUB_SECRET_ID")
         self.headers = {"Accept": "application/json"}
 
-    def fetch_token(self, session_code):
+    def hetch_token(self, session_code):
         endpoint = "https://github.com/login/oauth/access_token"
         data = {
             "client_id": self.client_id,
@@ -52,11 +52,11 @@ class GithubAuth:
             response = requests.post(url, params=params, headers=self.headers)
             return response.json()
         except Exception as e:
-            logging.warning(f"Error message: {e}")
+            logging.error(f"Error message: {e}")
 
     def __get(self, url, params):
         try:
             response = requests.get(url, params=params, headers=self.headers)
             return response.json()
         except Exception as e:
-            logging.warning(f"Error message: {e}")
+            logging.error(f"Error message: {e}")
