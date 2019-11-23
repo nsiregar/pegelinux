@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 from flask_moment import Moment
 from flask_login import LoginManager
 from flask_misaka import Misaka
-from app.helper import sentry
+from app.helper.sentry import SentryHelper
 
 app_config = os.environ.get("APP_CONFIG")
 app = Flask(__name__, static_folder="assets", template_folder="views")
@@ -18,7 +18,7 @@ Misaka(app, no_intra_emphasis=True, escape=True, autolink=True, math=True)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-sentry.init(app)
+SentryHelper(app)
 
 from app.controllers import routes
 from app.controllers import scheduler
