@@ -56,7 +56,7 @@ class GithubAuth:
 
     def __get(url, params):
         try:
-            response = requests.post(url, params=params, headers=self.headers)
+            response = requests.get(url, params=params, headers=self.headers)
             return response.json()
         except Exception as e:
             logging.warning(f"Error message: {e}")
