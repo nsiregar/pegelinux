@@ -25,7 +25,7 @@ class GithubAuth:
         self.secret = app.config.get("GITHUB_SECRET_ID")
         self.headers = {"Accept": "application/json"}
 
-    def hetch_token(self, session_code):
+    def fetch_token(self, session_code):
         endpoint = "https://github.com/login/oauth/access_token"
         data = {
             "client_id": self.client_id,
