@@ -20,12 +20,12 @@ def requires_roles(*roles):
 
 
 class GithubAuth:
-    def __init__(app):
+    def __init__(self, app):
         self.client_id = app.config.get("GITHUB_CLIENT_ID")
         self.secret = app.config.get("GITHUB_SECRET_ID")
         self.headers = {"Accept": "application/json"}
 
-    def fetch_token(session_code):
+    def fetch_token(self, session_code):
         endpoint = "https://github.com/login/oauth/access_token"
         data = {
             "client_id": self.client_id,
@@ -35,26 +35,26 @@ class GithubAuth:
         response = self.__post(endpoint, data)
         return response.get("access_token", "")
 
-    def fetch_user_data(access_token):
+    def fetch_user_data(self, access_token):
         endpoint = "https://api.github.com/user"
         data = {"access_token": access_token}
         response = self.__get(endpoint, data)
         return response
 
-    def fetch_user_email(access_token):
+    def fetch_user_email(self, access_token):
         url = "https://api.github.com/user/emails"
         data = {"access_token": access_token}
         response = self.__get(endpoint, data)
         return response.json()[0]["email"]
 
-    def __post(url, params):
+    def __post(self, url, params):
         try:
             response = requests.post(url, params=params, headers=self.headers)
             return response.json()
         except Exception as e:
             logging.warning(f"Error message: {e}")
 
-    def __get(url, params):
+    def __get(self, url, params):
         try:
             response = requests.get(url, params=params, headers=self.headers)
             return response.json()

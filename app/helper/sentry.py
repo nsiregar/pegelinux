@@ -4,13 +4,13 @@ from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
 
 
 class SentryHelper():
-    def __init__(app):
+    def __init__(self, app):
         self.app = app
         self.dsn = app.config.get("SENTRY_DSN")
         self.id = app.config.get("SENTRY_ID")
         self.__integrate()
 
-    def __integrate():
+    def __integrate(self):
         if (self.dsn and self.id) is None:
             return
 
