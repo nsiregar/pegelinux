@@ -18,7 +18,7 @@ def parse_feed():
     for url in urls:
         print(f'Trying to parse RSS from { url.rss }')
         status_code, entries = get_feed(url.rss)
-        if status != 200:
+        if status_code != 200:
             print(f'Status code {status_code} for {url.rss}')
             continue
 
