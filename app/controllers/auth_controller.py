@@ -20,12 +20,12 @@ from app.forms.user_form import UserForm
 from app.forms.user_form import ResetPasswordRequestForm
 from app.forms.user_form import ResetPasswordForm
 from app.helper.auth_helper import requires_roles
-from app.helper.auth_helper import get_github_token
-from app.helper.auth_helper import get_github_data
-from app.helper.auth_helper import get_github_email
-from app.helper.mail_helper import send_token_mail
+from app.helper.auth_helper import GithubAuth
+from app.helper.mail_helper import Mailer
 
 auth = Blueprint("auth", __name__)
+github = GithubAuth(app)
+mailer = Mailer(app)
 
 
 @auth.route("/login", methods=["GET", "POST"])
@@ -59,13 +59,13 @@ def github_auth():
 @auth.route("/github/auth", methods=["GET"])
 def github_callback():
     session_code = request.args["code"]
-    access_token = get_github_token(session_code)
-    auth_data = get_github_data(access_token)
+    access_token = github.fetch_token(session_code)
+    auth_data = github.fetch_user_data(access_token)
     if auth_data["login"] is None:
         flash("Authentication failed")
         return redirect(url_for("home.index"))
     email = (
-        get_github_email(access_token)
+        github.fetch_user_email(access_token)
         if auth_data["email"] is None
         else auth_data["email"]
     )
@@ -96,7 +96,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         subject = "Verify Registration pegelinux.id"
-        send_token_mail(user, subject, "/auth/verification.txt")
+        mailer.send_token(user, subject, "/auth/verification.txt")
         return redirect(url_for("auth.login"))
     return render_template("/auth/register.html", title="register", form=form)
 
@@ -135,7 +135,7 @@ def request_reset():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
             subject = "Reset Password Account {} pegelinux.id".format(user.username)
-            send_token_mail(user, subject, "/auth/reset_password.txt")
+            mailer.send_token(user, subject, "/auth/reset_password.txt")
         return redirect(url_for("auth.login"))
     return render_template(
         "/auth/request_reset.html", title="request reset password", form=form
@@ -181,5 +181,5 @@ def send_verification(id):
     if user.is_verified:
         return redirect(url_for("auth.moderation"))
     subject = "Reminder verify registration pegelinux.id"
-    send_token_mail(user, subject, "/auth/verification.txt")
+    mailer.send_token(user, subject, "/auth/verification.txt")
     return redirect(url_for("auth.moderation"))

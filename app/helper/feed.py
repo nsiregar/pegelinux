@@ -5,29 +5,37 @@ from app.models.post import Post
 from app.models.feed import Feed, APPROVED
 
 
-def parseFeed(url):
-    return feedparser.parse(url)
+def get_feed(url):
+    try:
+        feeds = feedparser.parse(url)
+        return feeds.get('status'), feeds.entries
+    except Exception as e:
+        msg = f'Error {e} occured'
+        print(msg)
 
-
-def getFeed():
+def parse_feed():
     urls = Feed.query.filter_by(approved=APPROVED).all()
     for url in urls:
-        print("Trying to parse RSS from {}".format(url.rss))
-        feed = parseFeed(url.rss)
-        if feed.get("status") == 200:
-            for item in feed.entries:
-                pubtime = datetime.datetime(*(item.published_parsed[0:7]))
-                record = Post.query.filter_by(url=item.link).first()
-                if record is None:
-                    post = Post(
-                        title=item.title,
-                        url=item.link,
-                        date=pubtime,
-                        owner=url.owner,
-                        domain=url.html,
-                    )
-                    db.session.add(post)
-                    db.session.commit()
-                    print("News added from {}".format(item.link))
-        else:
-            print("Status code {} for {}".format(feed.get("status"), url.rss))
+        print(f'Trying to parse RSS from { url.rss }')
+        status_code, entries = get_feed(url.rss)
+        if status_code != 200:
+            print(f'Status code {status_code} for {url.rss}')
+            continue
+
+        for item in entries:
+            pubtime = datetime.datetime(*(item.published_parsed[0:7]))
+            record = Post.query.filter_by(url=item.link).first()
+            if record is None:
+                save_post(item, pubtime, url)
+
+def save_post(item, pubtime, url):
+    post = Post(
+        title=item.title,
+        url=item.link,
+        date=pubtime,
+        owner=url.owner,
+        domain=url.html,
+    )
+    db.session.add(post)
+    db.session.commit()
+    print(f'News added from { item.link }')

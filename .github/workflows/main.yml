@@ -1,0 +1,42 @@
+name: Pegelinux
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Test Javascript
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+
+    - name: Run javascript test
+      run: |
+        cd ./js
+        yarn install
+        yarn test
+
+  build:
+    name: Build and publish docker image
+    runs-on: ubuntu-18.04
+    needs: test
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Build and publish docker image
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: nsiregar/pegelinux/pegelinux
+        username: ${{ secrets.GITHUB_REGISTRY_USER }}
+        password: ${{ secrets.GITHUB_REGISTRY_TOKEN }}
+        registry: docker.pkg.github.com
+        snapshot: true
+        cache: true
+        tag_names: true
