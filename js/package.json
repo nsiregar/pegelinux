@@ -10,7 +10,7 @@
     "karma-spec-reporter": "^0.0.32",
     "karma-webpack": "^4.0.2",
     "webpack": "^4.41.2",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^5.7.2"
   },
   "dependencies": {
     "babel-core": "^6.26.0",
